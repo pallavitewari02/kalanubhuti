@@ -4,11 +4,10 @@ import { Link, useLocation } from 'react-router-dom';
 import { CategoryExplorer } from '../components/CategoryExplorer';
 import { formatAboutParagraph } from '../components/AboutCopy';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
-import { aboutPreviewParagraphs } from '../data/about';
+import { aboutImage, aboutPreviewParagraphs } from '../data/about';
 
 const images = {
   hero: '/hero.jpg',
-  about: 'https://images.pexels.com/photos/22820070/pexels-photo-22820070.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   galleryOne: 'https://images.pexels.com/photos/29625840/pexels-photo-29625840.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   galleryTwo: 'https://images.pexels.com/photos/22820069/pexels-photo-22820069.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   galleryThree: 'https://images.pexels.com/photos/22820076/pexels-photo-22820076.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -51,7 +50,7 @@ export function HomePage() {
       <section className="paper-section about-section" id="about">
         <OrnamentalHeading>About Me</OrnamentalHeading>
         <div className="about-layout">
-          <img src={images.about} alt="Neha painting a traditional Indian artwork" />
+          <img src={aboutImage} alt="Neha painting a traditional Indian artwork" />
           <div className="about-copy">
             {aboutPreviewParagraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 24)}>{formatAboutParagraph(paragraph)}</p>

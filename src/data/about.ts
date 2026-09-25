@@ -1,5 +1,4 @@
-export const aboutImage =
-  'https://images.pexels.com/photos/22820070/pexels-photo-22820070.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
+export const aboutImage = '/neha.jpg';
 
 export const aboutParagraphs = [
   'I’m Neha, founder and owner of Kalanubhuti. The word Kalanubhuti comes from Sanskrit, combining Kala (art) and Anubhuti (experience), symbolizing art that touches the soul.',

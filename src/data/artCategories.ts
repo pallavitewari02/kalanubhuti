@@ -18,80 +18,59 @@ export type ArtCategory = {
   forms: ArtForm[];
 };
 
-const pexels = (id: number, h = 650, w = 940) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&h=${h}&w=${w}`;
+export type CategoryRecord = {
+  id: string;
+  name: string;
+  coverImage: string;
+};
 
-function gallery(slug: string, name: string, ids: number[]): Painting[] {
-  return ids.map((id, index) => ({
-    id: `${slug}-${index + 1}`,
-    title: `${name} ${index + 1}`,
-    image: pexels(id),
-  }));
-}
+export type ArtFormRecord = {
+  slug: string;
+  name: string;
+  image: string;
+  categoryId: string;
+};
 
-export const artCategories: ArtCategory[] = [
-  {
-    id: 'indian-folk-art',
-    name: 'Indian Folk Art',
-    coverImage: pexels(29625840),
-    forms: [
-      {
-        slug: 'madhubani',
-        name: 'Madhubani',
-        image: pexels(29625840),
-        paintings: gallery('madhubani', 'Madhubani', [29625840, 22820070, 22820069, 22820076, 368727, 9609267]),
-      },
-      {
-        slug: 'warli',
-        name: 'Warli',
-        image: pexels(22820070),
-        paintings: gallery('warli', 'Warli', [22820070, 29625840, 368727, 22820069, 9609267, 22820076]),
-      },
-      {
-        slug: 'lippan',
-        name: 'Lippan',
-        image: pexels(22820076),
-        paintings: gallery('lippan', 'Lippan', [22820076, 22820069, 29625840, 9609267, 22820070, 368727]),
-      },
-      {
-        slug: 'gond',
-        name: 'Gond',
-        image: pexels(22820069),
-        paintings: gallery('gond', 'Gond', [22820069, 368727, 22820076, 29625840, 22820070, 9609267]),
-      },
-      {
-        slug: 'rajasthani',
-        name: 'Rajasthani',
-        image: pexels(368727),
-        paintings: gallery('rajasthani', 'Rajasthani', [368727, 22820070, 29625840, 22820076, 22820069, 9609267]),
-      },
-      {
-        slug: 'pichwai',
-        name: 'Pichwai',
-        image: pexels(9609267),
-        paintings: gallery('pichwai', 'Pichwai', [9609267, 22820076, 22820069, 368727, 29625840, 22820070]),
-      },
-      {
-        slug: 'meenakari',
-        name: 'Meenakari',
-        image: pexels(22820069),
-        paintings: gallery('meenakari', 'Meenakari', [22820069, 29625840, 9609267, 22820070, 22820076, 368727]),
-      },
-    ],
-  },
-  {
-    id: 'texture-painting',
-    name: 'Texture Painting',
-    coverImage: pexels(9609267),
-    forms: [],
-  },
-  {
-    id: 'modern-contemporary',
-    name: 'Modern Contemporary Painting',
-    coverImage: pexels(368727),
-    forms: [],
-  },
+export type PaintingRecord = {
+  id: string;
+  title: string;
+  image: string;
+  artFormSlug: string;
+};
+
+export const categories: CategoryRecord[] = [
+  { id: 'indian-folk-art', name: 'Indian Folk Art', coverImage: '/art/indian-folk-art.jpg' },
+  { id: 'texture-painting', name: 'Texture Painting', coverImage: '/art/texture-painting.jpg' },
+  { id: 'modern-contemporary', name: 'Modern Contemporary', coverImage: '/art/modern-contemporary.jpg' },
 ];
+
+export const artForms: ArtFormRecord[] = [
+  { slug: 'madhubani', name: 'Madhubani', image: '/art/madhubani.jpg', categoryId: 'indian-folk-art' },
+  { slug: 'lippan', name: 'Lippan', image: '/art/lippan.jpg', categoryId: 'indian-folk-art' },
+  { slug: 'meenakari', name: 'Meenakari', image: '/art/meenakari.jpg', categoryId: 'indian-folk-art' },
+  { slug: 'pichwai', name: 'Pichwai', image: '/art/pichwai.jpg', categoryId: 'indian-folk-art' },
+  { slug: 'rajasthani', name: 'Rajasthani', image: '/art/rajasthani.jpg', categoryId: 'indian-folk-art' },
+  { slug: 'gond', name: 'Gond', image: '/art/gond.jpg', categoryId: 'indian-folk-art' },
+  { slug: 'warli', name: 'Warli', image: '/art/warli.jpg', categoryId: 'indian-folk-art' },
+];
+
+export const paintings: PaintingRecord[] = [];
+
+export const artCategories: ArtCategory[] = categories.map((category) => ({
+  id: category.id,
+  name: category.name,
+  coverImage: category.coverImage,
+  forms: artForms
+    .filter((form) => form.categoryId === category.id)
+    .map((form) => ({
+      slug: form.slug,
+      name: form.name,
+      image: form.image,
+      paintings: paintings
+        .filter((painting) => painting.artFormSlug === form.slug)
+        .map(({ id, title, image }) => ({ id, title, image })),
+    })),
+}));
 
 export function findArtFormBySlug(slug: string): ArtForm | undefined {
   for (const category of artCategories) {
