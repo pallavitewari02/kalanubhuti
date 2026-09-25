@@ -1,19 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
-
-const paintingTypes = [
-  'Canvas Painting',
-  'Madhubani',
-  'Warli',
-  'Lippan',
-  'Gond',
-  'Rajasthani',
-  'Pichwai',
-  'Meenakari',
-  'Texture Painting',
-  'Modern Contemporary Painting',
-];
+import { paintingTypes } from '../data/customOrder';
 
 export function CustomOrderPage() {
   const navigate = useNavigate();

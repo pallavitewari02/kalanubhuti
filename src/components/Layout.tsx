@@ -6,6 +6,7 @@ export function Layout() {
       <div className="top-border" />
       <header className="kala-header">
         <Link className="kala-brand" to="/#home">
+          <img className="brand-logo" src="/logo.jpg" alt="" />
           <span>Kalanubhuti</span>
         </Link>
         <nav className="kala-nav" aria-label="Main navigation">
@@ -17,7 +18,7 @@ export function Layout() {
         <span className="header-spacer" aria-hidden="true" />
       </header>
       <Outlet />
-      <footer className="kala-footer">© 2025 Kalanubhuti · Handmade with love and heritage</footer>
+      <footer className="kala-footer">© 2026 Kalanubhuti · Handmade with love and heritage</footer>
     </div>
   );
 }

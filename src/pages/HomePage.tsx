@@ -1,26 +1,18 @@
 import { useEffect } from 'react';
-import { Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { CategoryExplorer } from '../components/CategoryExplorer';
-import { formatAboutParagraph } from '../components/AboutCopy';
+import { ExhibitionSlider } from '../components/ExhibitionSlider';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
+import { formatAboutParagraph } from '../components/AboutCopy';
 import { aboutImage, aboutPreviewParagraphs } from '../data/about';
+import { blogPosts } from '../data/blog';
+import { products } from '../data/products';
 
 const images = {
   hero: '/hero.jpg',
-  galleryOne: 'https://images.pexels.com/photos/29625840/pexels-photo-29625840.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  galleryTwo: 'https://images.pexels.com/photos/22820069/pexels-photo-22820069.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  galleryThree: 'https://images.pexels.com/photos/22820076/pexels-photo-22820076.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   brushes: '/custom-orders.jpg',
-  shopFour: 'https://images.pexels.com/photos/368727/pexels-photo-368727.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
 };
-
-const products = [
-  { title: 'Handmade Painting', image: images.galleryOne },
-  { title: 'Handmade Painting', image: images.galleryTwo },
-  { title: 'Handmade Painting', image: images.galleryThree },
-  { title: 'Handmade Painting', image: images.shopFour },
-];
 
 export function HomePage() {
   const location = useLocation();
@@ -75,7 +67,7 @@ export function HomePage() {
               <article className="product-card" key={`${product.title}-${index}`}>
                 <img src={product.image} alt={product.title} />
                 <h3>{product.title}</h3>
-                <strong>₹2,500</strong>
+                <strong>{product.price}</strong>
                 <Link className="brick-button" to={`/buy-now?product=${encodeURIComponent(product.title)}`}>
                   Buy now
                 </Link>
@@ -84,6 +76,8 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      <ExhibitionSlider />
 
       <section className="paper-section custom-section" id="custom-order">
         <div className="custom-copy">
@@ -103,24 +97,14 @@ export function HomePage() {
         <div className="blog-column">
           <OrnamentalHeading>From the Blog</OrnamentalHeading>
           <div className="blog-grid">
-            <article>
-              <Link to="/blog/art-of-madhubani">
-                <img src={images.galleryTwo} alt="Colorful traditional painting" />
-                <h3>The Art of Madhubani</h3>
-              </Link>
-            </article>
-            <article>
-              <Link to="/blog/magic-of-meenakari">
-                <img src={images.galleryOne} alt="Traditional Indian artwork" />
-                <h3>The Magic of Meenakari</h3>
-              </Link>
-            </article>
-            <article>
-              <Link to="/blog/lippan-art">
-                <img src={images.galleryThree} alt="Lippan mud mirror artwork" />
-                <h3>Lippan Art</h3>
-              </Link>
-            </article>
+            {blogPosts.map((post) => (
+              <article key={post.slug}>
+                <Link to={`/blog/${post.slug}`}>
+                  <img src={post.image} alt={post.imageAlt} />
+                  <h3>{post.title}</h3>
+                </Link>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -135,13 +119,10 @@ export function HomePage() {
         </Link>
         <h3>Follow Me</h3>
         <div className="social-links">
-          <a href="#contact" aria-label="Facebook">
+          <a href="https://www.facebook.com/share/19ZWbmJWU2/" aria-label="Facebook" target="_blank" rel="noreferrer">
             <Facebook size={18} />
           </a>
-          <a href="#contact" aria-label="LinkedIn">
-            <Linkedin size={18} />
-          </a>
-          <a href="#contact" aria-label="Instagram">
+          <a href="https://www.instagram.com/v.neha13?stkn=YjN5YjhxZ2hrd2Qy" aria-label="Instagram" target="_blank" rel="noreferrer">
             <Instagram size={18} />
           </a>
         </div>
