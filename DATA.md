@@ -1,6 +1,9 @@
 # How to update gallery and shop data
 
-Edit only `src/data/data.json`. The site reads that file for **My Gallery** and **Shop: Featured Products**. You do not need to change any other code.
+Two files hold the records you edit. You do not need to change any other code.
+
+- `src/data/data.json` is the gallery and shop: categories, subcategories, and products.
+- `src/data/painting-types.json` is the Type of painting list on the custom order form.
 
 The file is a list of categories. A category is either a group that contains subcategories, or a single item with its own price.
 
@@ -76,6 +79,7 @@ A subcategory goes inside a category’s `children` list. Indian Folk Art is a c
 | `name` | yes | Name shown in the slider and on the art page. |
 | `image` | yes | Image shown in the slider. |
 | `desc` | no | Short description. Safe to leave out. |
+| `typeOfPainting` | no | Painting types this art form allows, such as `"Canvas Painting"`. Shown on the art page. Also used by the custom order form. |
 | `products` | yes | List of products. Use `[]` when there are none yet. |
 
 ### Add a subcategory
@@ -87,11 +91,44 @@ Put this object inside the parent category’s `children` array. Use the parent 
   "id": "1.8",
   "name": "Kalamkari",
   "image": "/art/kalamkari.jpg",
+  "typeOfPainting": ["Canvas Painting"],
   "products": []
 }
 ```
 
-The new name shows in the Indian Folk Art slider. Opening it shows the subcategory image. It does not show in the shop until you add a product with `"featured": true`.
+The new name shows in the Indian Folk Art slider. Opening it shows the subcategory image and the painting types you listed. It does not show in the shop until you add a product with `"featured": true`.
+
+Each name in `typeOfPainting` must match a `name` in `src/data/painting-types.json` exactly, including spaces and capitals. Leave `typeOfPainting` out when the art form should not appear on the custom order form.
+
+## Type of painting
+
+Edit `src/data/painting-types.json`. This file fills the **Type of painting** dropdown on the custom order form.
+
+| Field | Required | What it does |
+| --- | --- | --- |
+| `id` | yes | Unique id, such as `"3"`. |
+| `name` | yes | Label in the dropdown, such as `"Canvas Painting"`. |
+
+### Add a painting type
+
+```json
+{ "id": "3", "name": "Fabric Painting" }
+```
+
+Adding it here only puts the name in the dropdown. It does not attach that type to an art form. On each subcategory that should offer it, add the same name to `typeOfPainting`:
+
+```json
+"typeOfPainting": ["Canvas Painting", "Fabric Painting"]
+```
+
+### Custom order form
+
+The form has two linked fields:
+
+1. **Type of painting** lists every name in `painting-types.json`.
+2. **Art form** lists subcategories whose `typeOfPainting` includes the selected type.
+
+Example: Madhubani has `"typeOfPainting": ["Canvas Painting", "Paper Painting"]`. Choosing either of those types shows Madhubani in Art form. An art form with no `typeOfPainting` stays out of that list. If no subcategory allows the selected type, Art form says there are no art forms for that type yet.
 
 ## Product
 
@@ -157,4 +194,5 @@ Indian Folk Art has children, so the shop uses the products inside those childre
 - Image paths start with `/art/` and match a file in `public/art/`, or they are a full `https://` address.
 - Prices are text in quotes: `"₹2,500"`.
 - A subcategory always has `"products": []` when it has no products yet.
-- Save `data.json`. The dev site reloads on its own.
+- A name in `typeOfPainting` matches a `name` in `painting-types.json`.
+- Save the file you edited. The dev site reloads on its own.

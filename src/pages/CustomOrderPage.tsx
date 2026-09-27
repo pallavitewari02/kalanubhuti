@@ -2,12 +2,16 @@ import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { paintingTypes } from '../data/customOrder';
+import { subcategoriesForType } from '../data/gallery';
+
+const initialType = paintingTypes[0]?.name ?? '';
 
 export function CustomOrderPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: '',
-    paintingType: 'Canvas Painting',
+    paintingType: initialType,
+    subcategory: subcategoriesForType(initialType)[0]?.id ?? '',
     mobile: '',
     email: '',
     length: '',
@@ -16,8 +20,20 @@ export function CustomOrderPage() {
     pincode: '',
   });
 
+  const artForms = subcategoriesForType(form.paintingType);
+
   const update = (field: keyof typeof form) => (event: { target: { value: string } }) => {
     setForm((current) => ({ ...current, [field]: event.target.value }));
+  };
+
+  const onPaintingType = (event: { target: { value: string } }) => {
+    const paintingType = event.target.value;
+    const matches = subcategoriesForType(paintingType);
+    setForm((current) => ({
+      ...current,
+      paintingType,
+      subcategory: matches.some((item) => item.id === current.subcategory) ? current.subcategory : (matches[0]?.id ?? ''),
+    }));
   };
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -36,10 +52,22 @@ export function CustomOrderPage() {
 
         <label className="order-field">
           <span>Type of painting *</span>
-          <select name="paintingType" required value={form.paintingType} onChange={update('paintingType')}>
+          <select name="paintingType" required value={form.paintingType} onChange={onPaintingType}>
             {paintingTypes.map((type) => (
-              <option key={type} value={type}>
-                {type}
+              <option key={type.id} value={type.name}>
+                {type.name}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="order-field">
+          <span>Art form *</span>
+          <select name="subcategory" required={artForms.length > 0} value={form.subcategory} onChange={update('subcategory')}>
+            {artForms.length === 0 && <option value="">No art forms for this type yet</option>}
+            {artForms.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
               </option>
             ))}
           </select>

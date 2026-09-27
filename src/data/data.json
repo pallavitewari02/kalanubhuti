@@ -8,6 +8,7 @@
         "id": "1.1",
         "name": "Madhubani",
         "image": "/art/madhubani.jpg",
+        "typeOfPainting": ["Canvas Painting", "Paper Painting"],
         "products": [
           {
             "name": "Handmade Painting",
@@ -21,6 +22,7 @@
         "id": "1.2",
         "name": "Lippan",
         "image": "/art/lippan.jpg",
+        "typeOfPainting": ["Paper Painting"],
         "products": [
           {
             "name": "Handmade Painting",

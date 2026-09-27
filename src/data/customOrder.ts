@@ -1,12 +1,8 @@
-export const paintingTypes = [
-  'Canvas Painting',
-  'Madhubani',
-  'Warli',
-  'Lippan',
-  'Gond',
-  'Rajasthani',
-  'Pichwai',
-  'Meenakari',
-  'Texture Painting',
-  'Modern Contemporary Painting',
-];
+import types from './painting-types.json';
+
+export type PaintingType = {
+  id: string;
+  name: string;
+};
+
+export const paintingTypes: PaintingType[] = types;

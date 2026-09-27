@@ -21,6 +21,9 @@ export function ArtFormPage() {
   return (
     <main className="paper-section art-form-page">
       <OrnamentalHeading>{form.name} Art</OrnamentalHeading>
+      {'typeOfPainting' in form && form.typeOfPainting && form.typeOfPainting.length > 0 && (
+        <p className="order-product">{form.typeOfPainting.join(', ')}</p>
+      )}
       <div className="art-form-grid">
         <article className="gallery-card">
           <img src={form.image} alt={form.name} />

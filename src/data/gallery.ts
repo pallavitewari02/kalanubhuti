@@ -12,6 +12,7 @@ export type Subcategory = {
   name: string;
   desc?: string;
   image: string;
+  typeOfPainting?: string[];
   products: Product[];
 };
 
@@ -41,6 +42,12 @@ export const products: Product[] = gallery.flatMap((category) => {
   }
   return featuredChildren;
 });
+
+export function subcategoriesForType(typeName: string): Subcategory[] {
+  return gallery.flatMap((category) =>
+    (category.children ?? []).filter((child) => child.typeOfPainting?.includes(typeName)),
+  );
+}
 
 export function findGallery(id: string, items: Array<Category | Subcategory> = gallery): Category | Subcategory | undefined {
   for (const item of items) {
