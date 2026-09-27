@@ -1,10 +1,10 @@
 import { Link, useParams } from 'react-router-dom';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
-import { findCategoryById } from '../data/artCategories';
+import { findGallery } from '../data/gallery';
 
 export function CategoryPage() {
   const { id } = useParams();
-  const category = id ? findCategoryById(id) : undefined;
+  const category = id ? findGallery(id) : undefined;
 
   if (!category) {
     return (
@@ -21,7 +21,8 @@ export function CategoryPage() {
   return (
     <main className="paper-section art-form-page">
       <OrnamentalHeading>{category.name}</OrnamentalHeading>
-      <img className="category-page-cover" src={category.coverImage} alt={category.name} />
+      <img className="category-page-cover" src={category.image} alt={category.name} />
+      {'price' in category && category.price && <p className="order-product">{category.price}</p>}
       <Link className="brick-button gallery-button" to="/#gallery">
         Back to Gallery
       </Link>

@@ -1,23 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import type { ArtForm } from '../data/artCategories';
+import type { Subcategory } from '../data/gallery';
 
 type ArtCoverflowProps = {
-  forms: ArtForm[];
+  nodes: Subcategory[];
 };
 
 function wrapIndex(index: number, length: number) {
   return ((index % length) + length) % length;
 }
 
-export function ArtCoverflow({ forms }: ArtCoverflowProps) {
+export function ArtCoverflow({ nodes }: ArtCoverflowProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const ignoreSlideHovers = useRef(false);
 
   const goTo = (index: number) => {
-    setActiveIndex(wrapIndex(index, forms.length));
+    setActiveIndex(wrapIndex(index, nodes.length));
   };
 
   useEffect(() => {
@@ -27,9 +27,9 @@ export function ArtCoverflow({ forms }: ArtCoverflowProps) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [activeIndex, forms.length]);
+  }, [activeIndex, nodes.length]);
 
-  if (forms.length === 0) return null;
+  if (nodes.length === 0) return null;
 
   return (
     <div
@@ -61,11 +61,11 @@ export function ArtCoverflow({ forms }: ArtCoverflowProps) {
       </button>
 
       <div className="coverflow-stage">
-        {forms.map((form, index) => {
+        {nodes.map((node, index) => {
           let offset = index - activeIndex;
-          const half = Math.floor(forms.length / 2);
-          if (offset > half) offset -= forms.length;
-          if (offset < -half) offset += forms.length;
+          const half = Math.floor(nodes.length / 2);
+          if (offset > half) offset -= nodes.length;
+          if (offset < -half) offset += nodes.length;
 
           const isCenter = offset === 0;
           const abs = Math.min(Math.abs(offset), 3);
@@ -76,15 +76,15 @@ export function ArtCoverflow({ forms }: ArtCoverflowProps) {
 
           return (
             <Link
-              key={form.slug}
-              to={`/art/${form.slug}`}
+              key={node.id}
+              to={`/art/${node.id}`}
               className={`coverflow-card${isCenter ? ' is-center' : ''} depth-${abs}`}
               style={{
                 transform: `translateX(${translateX}px) scale(${scale})`,
                 zIndex: isCenter ? 30 : 20 - abs,
               }}
               aria-current={isCenter ? 'true' : undefined}
-              aria-label={`${form.name} art`}
+              aria-label={`${node.name} art`}
               tabIndex={isCenter ? 0 : -1}
               onMouseEnter={() => {
                 if (index === activeIndex) {
@@ -104,8 +104,8 @@ export function ArtCoverflow({ forms }: ArtCoverflowProps) {
                 }
               }}
             >
-              <img src={form.image} alt="" />
-              <h3>{form.name}</h3>
+              <img src={node.image} alt="" />
+              <h3>{node.name}</h3>
             </Link>
           );
         })}

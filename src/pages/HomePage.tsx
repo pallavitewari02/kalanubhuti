@@ -7,7 +7,7 @@ import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { formatAboutParagraph } from '../components/AboutCopy';
 import { aboutImage, aboutPreviewParagraphs } from '../data/about';
 import { blogPosts } from '../data/blog';
-import { products } from '../data/products';
+import { products } from '../data/gallery';
 
 const images = {
   hero: '/hero.jpg',
@@ -64,11 +64,11 @@ export function HomePage() {
           <OrnamentalHeading>Shop: Featured Products</OrnamentalHeading>
           <div className="product-grid">
             {products.map((product, index) => (
-              <article className="product-card" key={`${product.title}-${index}`}>
-                <img src={product.image} alt={product.title} />
-                <h3>{product.title}</h3>
+              <article className="product-card" key={`${product.name}-${index}`}>
+                <img src={product.image} alt={product.name} />
+                <h3>{product.name}</h3>
                 <strong>{product.price}</strong>
-                <Link className="brick-button" to={`/buy-now?product=${encodeURIComponent(product.title)}`}>
+                <Link className="brick-button" to={`/buy-now?product=${encodeURIComponent(product.name)}`}>
                   Buy now
                 </Link>
               </article>
