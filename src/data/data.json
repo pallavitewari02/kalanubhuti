@@ -2,6 +2,7 @@
   {
     "id": "1",
     "name": "Indian Folk Art",
+    "desc": "Indian Folk Art gathers paintings that grew in villages and courts across the country. Madhubani fills the surface with fine line and symbol. Lippan sets mirrors into clay, while Meenakari and Pichwai bring enamel colour and devotional scenes. Rajasthani, Gond, and Warli each keep their own marks, stories, and way of seeing the world.",
     "image": "/art/indian-folk-art.jpg",
     "children": [
       {
@@ -81,6 +82,7 @@
   {
     "id": "2",
     "name": "Texture Painting",
+    "desc": "Texture Painting builds the surface instead of only colouring it. Layers of medium rise from the canvas so light catches ridges, grains, and soft valleys. The palette stays close to the studio's cream, earth, and brick tones. Each piece is meant to be seen up close, where the hand of the maker is still visible.",
     "image": "/art/texture-painting.jpg",
     "price": "₹1,200"
 
@@ -88,6 +90,7 @@
   {
     "id": "3",
     "name": "Modern Contemporary",
+    "desc": "Modern Contemporary work uses today's compositions while staying handmade. Forms are simpler, and colour is chosen for mood rather than for a fixed traditional motif. The paintings can sit in a current home without losing the warmth of the studio. Each piece is made one at a time, not printed or repeated.",
     "image": "/art/modern-contemporary.jpg",
     "price": "₹1,500"
   }

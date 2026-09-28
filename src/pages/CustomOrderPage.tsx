@@ -19,6 +19,8 @@ export function CustomOrderPage() {
     address: '',
     pincode: '',
   });
+  const [referenceImage, setReferenceImage] = useState<File | null>(null);
+  const [referenceError, setReferenceError] = useState('');
 
   const artForms = subcategoriesForType(form.paintingType);
 
@@ -153,6 +155,33 @@ export function CustomOrderPage() {
             />
           </label>
         </div>
+
+        <label className="order-field">
+          <span>Reference image (optional)</span>
+          <input
+            name="referenceImage"
+            type="file"
+            accept="image/*"
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              if (!file) {
+                setReferenceImage(null);
+                setReferenceError('');
+                return;
+              }
+              if (file.size > 5 * 1024 * 1024) {
+                event.target.value = '';
+                setReferenceImage(null);
+                setReferenceError('The image must be 5 MB or smaller.');
+                return;
+              }
+              setReferenceError('');
+              setReferenceImage(file);
+            }}
+          />
+          {referenceImage && <small>{referenceImage.name}</small>}
+          {referenceError && <small>{referenceError}</small>}
+        </label>
 
         <p className="order-note">
           Delivery charges may apply and vary based on the size of painting and delivery location.

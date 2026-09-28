@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
+import { gallery } from '../data/gallery';
 
 export function Layout() {
   return (
@@ -10,10 +11,26 @@ export function Layout() {
           <span>Kalanubhuti</span>
         </Link>
         <nav className="kala-nav" aria-label="Main navigation">
-          <Link to="/#home">Home</Link>
-          <Link to="/#gallery">Gallery</Link>
+          <div className="nav-dropdown">
+            <Link to="/#gallery">Gallery</Link>
+            <ul className="nav-menu">
+              {gallery.map((category) => (
+                <li key={category.id}>
+                  <Link className="nav-parent" to={`/category/${category.id}`}>
+                    {category.name}
+                  </Link>
+                  {category.children?.map((child) => (
+                    <Link className="nav-child" key={child.id} to={`/art/${child.id}`}>
+                      {child.name}
+                    </Link>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          </div>
           <Link to="/#shop">Shop</Link>
           <Link to="/custom-order">Custom Order</Link>
+          <Link to="/contact">Contact Us</Link>
         </nav>
         <span className="header-spacer" aria-hidden="true" />
       </header>
