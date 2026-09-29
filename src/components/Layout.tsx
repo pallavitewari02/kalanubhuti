@@ -14,16 +14,20 @@ export function Layout() {
           <div className="nav-dropdown">
             <Link to="/#gallery">Gallery</Link>
             <ul className="nav-menu">
-              {gallery.map((category) => (
+              {gallery
+                .filter((category) => category.id !== '2')
+                .map((category) => (
                 <li key={category.id}>
                   <Link className="nav-parent" to={`/category/${category.id}`}>
                     {category.name}
                   </Link>
-                  {category.children?.map((child) => (
-                    <Link className="nav-child" key={child.id} to={`/art/${child.id}`}>
-                      {child.name}
-                    </Link>
-                  ))}
+                  {category.children
+                    ?.filter((child) => child.image)
+                    .map((child) => (
+                      <Link className="nav-child" key={child.id} to={`/art/${child.id}`}>
+                        {child.name}
+                      </Link>
+                    ))}
                 </li>
               ))}
             </ul>

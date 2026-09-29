@@ -1,4 +1,5 @@
 [
   { "id": "1", "name": "Canvas Painting" },
-  { "id": "2", "name": "Paper Painting" }
+  { "id": "2", "name": "Paper Painting" },
+  { "id": "3","name": "MDF Board Painting"}
 ]

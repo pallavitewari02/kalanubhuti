@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
+import { submitWeb3Form } from '../lib/web3forms';
 
 function WhatsAppIcon() {
   return (
@@ -17,22 +18,44 @@ export function BuyNowPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const product = searchParams.get('product') ?? 'Handmade Painting';
+  const image = searchParams.get('image') ?? '';
   const [form, setForm] = useState({
     name: '',
+    email: '',
     mobile: '',
     address: '',
     pincode: '',
   });
+  const [error, setError] = useState('');
+  const [sending, setSending] = useState(false);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate('/thank-you');
+    setError('');
+    setSending(true);
+    try {
+      await submitWeb3Form('Kalanubhuti buy now', {
+        product,
+        name: form.name,
+        email: form.email,
+        mobile: `+91 ${form.mobile}`,
+        address: form.address,
+        pincode: form.pincode,
+      });
+      navigate('/thank-you');
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : 'The message could not be sent.');
+      setSending(false);
+    }
   };
 
   return (
     <main className="paper-section order-page">
       <OrnamentalHeading>Buy now</OrnamentalHeading>
-      <p className="order-product">You are ordering: <strong>{product}</strong></p>
+      <div className="buy-preview">
+        {image && <img src={image} alt={product} />}
+        <p className="order-product">{product}</p>
+      </div>
 
       <form className="order-form" onSubmit={onSubmit}>
           <label className="order-field">
@@ -44,6 +67,18 @@ export function BuyNowPage() {
               autoComplete="name"
               value={form.name}
               onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+            />
+          </label>
+
+          <label className="order-field">
+            <span>Email*</span>
+            <input
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              value={form.email}
+              onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
             />
           </label>
 
@@ -98,7 +133,8 @@ export function BuyNowPage() {
             Delivery charges applies &amp; vary based on the size of painting &amp; delivery location
           </p>
 
-          <button type="submit" className="brick-button">
+          {error && <p className="order-note">{error}</p>}
+          <button type="submit" className="brick-button" disabled={sending}>
             Submit
           </button>
         </form>

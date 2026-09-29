@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { paintingTypes } from '../data/customOrder';
 import { subcategoriesForType } from '../data/gallery';
+import { submitWeb3Form } from '../lib/web3forms';
 
 const initialType = paintingTypes[0]?.name ?? '';
 
@@ -21,8 +22,10 @@ export function CustomOrderPage() {
   });
   const [referenceImage, setReferenceImage] = useState<File | null>(null);
   const [referenceError, setReferenceError] = useState('');
+  const [error, setError] = useState('');
+  const [sending, setSending] = useState(false);
 
-  const artForms = subcategoriesForType(form.paintingType);
+  const artForms = subcategoriesForType(form.paintingType).filter((item) => item.image);
 
   const update = (field: keyof typeof form) => (event: { target: { value: string } }) => {
     setForm((current) => ({ ...current, [field]: event.target.value }));
@@ -30,7 +33,7 @@ export function CustomOrderPage() {
 
   const onPaintingType = (event: { target: { value: string } }) => {
     const paintingType = event.target.value;
-    const matches = subcategoriesForType(paintingType);
+    const matches = subcategoriesForType(paintingType).filter((item) => item.image);
     setForm((current) => ({
       ...current,
       paintingType,
@@ -38,9 +41,32 @@ export function CustomOrderPage() {
     }));
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate('/thank-you');
+    if (referenceError) return;
+    setError('');
+    setSending(true);
+    const artForm = artForms.find((item) => item.id === form.subcategory)?.name ?? '';
+    try {
+      await submitWeb3Form(
+        'Kalanubhuti custom order',
+        {
+          name: form.name,
+          paintingType: form.paintingType,
+          artForm,
+          mobile: `+91 ${form.mobile}`,
+          ...(form.email ? { email: form.email } : {}),
+          length: form.length,
+          breadth: form.breadth,
+          address: form.address,
+          pincode: form.pincode,
+        },
+      );
+      navigate('/thank-you');
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : 'The message could not be sent.');
+      setSending(false);
+    }
   };
 
   return (
@@ -75,8 +101,7 @@ export function CustomOrderPage() {
           </select>
         </label>
 
-        <div className="order-row">
-          <label className="order-field">
+        <label className="order-field">
             <span>Mobile number *</span>
             <span className="mobile-input">
               <span className="mobile-prefix">+91</span>
@@ -95,11 +120,10 @@ export function CustomOrderPage() {
             <small>We will reach out via WhatsApp or phone call</small>
           </label>
 
-          <label className="order-field">
-            <span>Email ID (optional)</span>
-            <input name="email" type="email" autoComplete="email" value={form.email} onChange={update('email')} />
-          </label>
-        </div>
+        <label className="order-field">
+          <span>Email ID *</span>
+          <input name="email" type="email" required autoComplete="email" value={form.email} onChange={update('email')} />
+        </label>
 
         <div className="order-row">
           <label className="order-field">
@@ -179,6 +203,8 @@ export function CustomOrderPage() {
               setReferenceImage(file);
             }}
           />
+          <small>Upload an image of size less than or equal to 5 MB.</small>
+          <small>The photo is saved on this page only. It is not emailed until file upload is available.</small>
           {referenceImage && <small>{referenceImage.name}</small>}
           {referenceError && <small>{referenceError}</small>}
         </label>
@@ -187,7 +213,8 @@ export function CustomOrderPage() {
           Delivery charges may apply and vary based on the size of painting and delivery location.
         </p>
 
-        <button type="submit" className="brick-button">
+        {error && <p className="order-note">{error}</p>}
+        <button type="submit" className="brick-button" disabled={sending}>
           Submit
         </button>
       </form>

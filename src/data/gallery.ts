@@ -24,6 +24,7 @@ export type Category = {
   price?: string;
   featured?: boolean;
   children?: Subcategory[];
+  products?: Product[];
 };
 
 export const gallery: Category[] = data;

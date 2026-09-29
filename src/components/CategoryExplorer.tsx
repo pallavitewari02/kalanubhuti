@@ -5,7 +5,9 @@ export function CategoryExplorer() {
   return (
     <div className="category-explorer">
       <div className="category-row">
-        {gallery.map((category) => (
+        {gallery
+          .filter((category) => category.id !== '2')
+          .map((category) => (
           <article key={category.id} className="category-panel">
             <Link className="category-trigger" to={`/category/${category.id}`}>
               <img src={category.image} alt="" />

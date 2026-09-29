@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Facebook, Instagram } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Facebook, Instagram, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { CategoryExplorer } from '../components/CategoryExplorer';
 import { ExhibitionSlider } from '../components/ExhibitionSlider';
@@ -16,6 +16,16 @@ const images = {
 
 export function HomePage() {
   const location = useLocation();
+  const [openProduct, setOpenProduct] = useState<{ name: string; image: string } | null>(null);
+
+  useEffect(() => {
+    if (!openProduct) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpenProduct(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [openProduct]);
 
   useEffect(() => {
     if (!location.hash) return;
@@ -65,10 +75,19 @@ export function HomePage() {
           <div className="product-grid">
             {products.map((product, index) => (
               <article className="product-card" key={`${product.name}-${index}`}>
-                <img src={product.image} alt={product.name} />
+                <button
+                  className="product-photo"
+                  type="button"
+                  onClick={() => setOpenProduct({ name: product.name, image: product.image })}
+                >
+                  <img src={product.image} alt={product.name} />
+                </button>
                 <h3>{product.name}</h3>
                 <strong>{product.price}</strong>
-                <Link className="brick-button" to={`/buy-now?product=${encodeURIComponent(product.name)}`}>
+                <Link
+                  className="brick-button"
+                  to={`/buy-now?product=${encodeURIComponent(product.name)}&image=${encodeURIComponent(product.image)}`}
+                >
                   Buy now
                 </Link>
               </article>
@@ -127,6 +146,14 @@ export function HomePage() {
           </a>
         </div>
       </section>
+      {openProduct && (
+        <div className="exhibition-lightbox" role="dialog" aria-modal="true" aria-label={openProduct.name}>
+          <button className="exhibition-close" type="button" aria-label="Close" onClick={() => setOpenProduct(null)}>
+            <X size={22} />
+          </button>
+          <img src={openProduct.image} alt={openProduct.name} />
+        </div>
+      )}
     </main>
   );
 }

@@ -3,78 +3,142 @@
     "id": "1",
     "name": "Indian Folk Art",
     "desc": "Indian Folk Art gathers paintings that grew in villages and courts across the country. Madhubani fills the surface with fine line and symbol. Lippan sets mirrors into clay, while Meenakari and Pichwai bring enamel colour and devotional scenes. Rajasthani, Gond, and Warli each keep their own marks, stories, and way of seeing the world.",
-    "image": "/art/indian-folk-art.jpg",
+    "image": "/Art%20pics/Indian%20Folk%20Art/Madhubani/Lord%20Ganesha.jpeg",
     "children": [
       {
         "id": "1.1",
         "name": "Madhubani",
-        "image": "/art/madhubani.jpg",
+        "image": "/Art%20pics/Indian%20Folk%20Art/Madhubani/Lord%20Buddha.jpeg",
         "typeOfPainting": ["Canvas Painting", "Paper Painting"],
         "products": [
           {
-            "name": "Handmade Painting",
-            "image": "https://images.pexels.com/photos/29625840/pexels-photo-29625840.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "name": "Lord Buddha",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Madhubani/Lord%20Buddha.jpeg",
             "price": "₹2,500",
             "featured": true
+          },
+          {
+            "name": "Lord Ganesha",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Madhubani/Lord%20Ganesha.jpeg",
+            "price": "₹2,500"
           }
         ]
       },
       {
         "id": "1.2",
         "name": "Lippan",
-        "image": "/art/lippan.jpg",
+        "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-1.jpeg",
         "typeOfPainting": ["Paper Painting"],
         "products": [
           {
-            "name": "Handmade Painting",
-            "image": "https://images.pexels.com/photos/22820069/pexels-photo-22820069.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "name": "Circle-1",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-1.jpeg",
             "price": "₹2,500",
             "featured": true
+          },
+          {
+            "name": "Circle-2",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-2.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Circle-3",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-3.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Circle-4",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-4.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Circle-5",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-5.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Circle-Jagganath",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-Jagganath.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Jai Jagganath",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Jai%20Jagganath.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Om",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Om.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Square mirror-2",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror-2.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Square mirror-3",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror-3.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Square mirror-4",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror-4.jpeg",
+            "price": "₹2,500"
+          },
+          {
+            "name": "Square mirror",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror.jpeg",
+            "price": "₹2,500"
           }
         ]
       },
       {
         "id": "1.3",
         "name": "Meenakari",
-        "image": "/art/meenakari.jpg",
-        "products": [
-          {
-            "name": "Handmade Painting",
-            "image": "https://images.pexels.com/photos/22820076/pexels-photo-22820076.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-            "price": "₹2,500",
-            "featured": true
-          }
-        ]
+        "image": "",
+        "products": []
       },
       {
         "id": "1.4",
         "name": "Pichwai",
-        "image": "/art/pichwai.jpg",
+        "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Circle-rainbow.jpeg",
         "products": [
           {
-            "name": "Handmade Painting",
-            "image": "https://images.pexels.com/photos/368727/pexels-photo-368727.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+            "name": "Circle-rainbow",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Circle-rainbow.jpeg",
             "price": "₹2,500",
             "featured": true
+          },
+          {
+            "name": "Sri Nath ji",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Sri%20Nath%20ji.jpeg",
+            "price": "₹2,500"
           }
         ]
       },
       {
         "id": "1.5",
         "name": "Rajasthani",
-        "image": "/art/rajasthani.jpg",
+        "image": "",
         "products": []
       },
       {
         "id": "1.6",
         "name": "Gond",
-        "image": "/art/gond.jpg",
-        "products": []
+        "image": "/Art%20pics/Indian%20Folk%20Art/Gond/Gond-1.jpeg",
+        "products": [
+          {
+            "name": "Gond-1",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Gond/Gond-1.jpeg",
+            "price": "₹2,500"
+          }
+        ]
       },
       {
         "id": "1.7",
         "name": "Warli",
-        "image": "/art/warli.jpg",
+        "image": "",
         "products": []
       }
     ]
@@ -85,13 +149,39 @@
     "desc": "Texture Painting builds the surface instead of only colouring it. Layers of medium rise from the canvas so light catches ridges, grains, and soft valleys. The palette stays close to the studio's cream, earth, and brick tones. Each piece is meant to be seen up close, where the hand of the maker is still visible.",
     "image": "/art/texture-painting.jpg",
     "price": "₹1,200"
-
   },
   {
     "id": "3",
     "name": "Modern Contemporary",
     "desc": "Modern Contemporary work uses today's compositions while staying handmade. Forms are simpler, and colour is chosen for mood rather than for a fixed traditional motif. The paintings can sit in a current home without losing the warmth of the studio. Each piece is made one at a time, not printed or repeated.",
-    "image": "/art/modern-contemporary.jpg",
-    "price": "₹1,500"
+    "image": "/Art%20pics/Modern%20Contemporary/Lord%20Ganesha.jpg",
+    "price": "₹1,500",
+    "products": [
+      {
+        "name": "Bihar Cultural theme",
+        "image": "/Art%20pics/Modern%20Contemporary/Bihar%20Cultural%20theme.jpg",
+        "price": "₹1,500"
+      },
+      {
+        "name": "Shiv Parivar",
+        "image": "/Art%20pics/Modern%20Contemporary/Shiv%20Parivar.jpg",
+        "price": "₹1,500"
+      },
+      {
+        "name": "Lord Hanuman",
+        "image": "/Art%20pics/Modern%20Contemporary/Lord%20Hanuman.jpg",
+        "price": "₹1,500"
+      },
+      {
+        "name": "Lord Ganesha",
+        "image": "/Art%20pics/Modern%20Contemporary/Lord%20Ganesha.jpg",
+        "price": "₹1,500"
+      },
+      {
+        "name": "Radha Krishna",
+        "image": "/Art%20pics/Modern%20Contemporary/Radha%20Krishna.jpeg",
+        "price": "₹1,500"
+      }
+    ]
   }
 ]

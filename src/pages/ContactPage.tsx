@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
+import { submitWeb3Form } from '../lib/web3forms';
 
 export function ContactPage() {
   const navigate = useNavigate();
@@ -9,14 +10,28 @@ export function ContactPage() {
     phone: '',
     query: '',
   });
+  const [error, setError] = useState('');
+  const [sending, setSending] = useState(false);
 
   const update = (field: keyof typeof form) => (event: { target: { value: string } }) => {
     setForm((current) => ({ ...current, [field]: event.target.value }));
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate('/thank-you?kind=contact');
+    setError('');
+    setSending(true);
+    try {
+      await submitWeb3Form('Kalanubhuti contact', {
+        name: form.name,
+        phone: `+91 ${form.phone}`,
+        query: form.query,
+      });
+      navigate('/thank-you?kind=contact');
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : 'The message could not be sent.');
+      setSending(false);
+    }
   };
 
   return (
@@ -51,7 +66,8 @@ export function ContactPage() {
           <textarea name="query" rows={5} value={form.query} onChange={update('query')} />
         </label>
 
-        <button type="submit" className="brick-button">
+        {error && <p className="order-note">{error}</p>}
+        <button type="submit" className="brick-button" disabled={sending}>
           Submit
         </button>
       </form>
