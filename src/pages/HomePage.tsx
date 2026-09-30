@@ -197,7 +197,6 @@ export function HomePage() {
           <div className="artwork-popup">
             <div className="artwork-popup-main">
               <ZoomPhoto src={openSlide.image} alt={openSlide.name} controlsBelow />
-              {openSlide.detail ? <p className="artwork-description">{openSlide.detail}</p> : null}
             </div>
             <aside className="artwork-summary">
               <h2>{openSlide.name}</h2>

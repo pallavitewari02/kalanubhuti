@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 
-const highlight = /(Neha|Kalanubhuti|Kala \(art\)|Anubhuti \(experience\))/g;
+const highlight = /(Diploma in Textile Design|Diploma in Art & Craft|Neha|Kalanubhuti|Kala \(art\)|Anubhuti \(experience\))/g;
 
 export function formatAboutParagraph(text: string): ReactNode[] {
   return text.split(highlight).map((part, index) => {
-    if (part === 'Neha' || part === 'Kalanubhuti') {
+    if (part === 'Neha' || part === 'Kalanubhuti' || part === 'Diploma in Textile Design' || part === 'Diploma in Art & Craft') {
       return <strong key={`${part}-${index}`}>{part}</strong>;
     }
     if (part === 'Kala (art)' || part === 'Anubhuti (experience)') {

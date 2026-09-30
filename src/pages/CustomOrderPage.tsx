@@ -6,7 +6,10 @@ import { paintingTypes } from '../data/customOrder';
 import { subcategoriesForType } from '../data/gallery';
 import { submitWeb3Form } from '../lib/web3forms';
 
-const initialType = paintingTypes[0]?.name ?? '';
+const paperType = 'Paper Painting';
+const initialType = paintingTypes.some((type) => type.name === paperType) ? paperType : (paintingTypes[0]?.name ?? '');
+const circleSizes = ['14', '16', '18', '22'];
+const shapedTypes = new Set(['MDF Board Painting', 'Canvas Painting']);
 
 export function CustomOrderPage() {
   const navigate = useNavigate();
@@ -16,6 +19,8 @@ export function CustomOrderPage() {
     subcategory: subcategoriesForType(initialType)[0]?.id ?? '',
     mobile: '',
     email: '',
+    shape: 'Square/rectangle',
+    circleSize: circleSizes[0],
     length: '',
     breadth: '',
     address: '',
@@ -25,6 +30,8 @@ export function CustomOrderPage() {
   const [sending, setSending] = useState(false);
 
   const artForms = subcategoriesForType(form.paintingType).filter((item) => item.image);
+  const offersShape = shapedTypes.has(form.paintingType);
+  const isCircle = offersShape && form.shape === 'Circle';
 
   const update = (field: keyof typeof form) => (event: { target: { value: string } }) => {
     setForm((current) => ({ ...current, [field]: event.target.value }));
@@ -54,8 +61,10 @@ export function CustomOrderPage() {
           artForm,
           mobile: `+91 ${form.mobile}`,
           ...(form.email ? { email: form.email } : {}),
-          length: form.length,
-          breadth: form.breadth,
+          ...(offersShape ? { shape: form.shape } : { shape: 'Square/rectangle' }),
+          ...(isCircle
+            ? { size: `${form.circleSize} inches` }
+            : { length: `${form.length} inches`, breadth: `${form.breadth} inches` }),
           address: form.address,
           pincode: form.pincode,
         },
@@ -123,13 +132,37 @@ export function CustomOrderPage() {
           <input name="email" type="email" required autoComplete="email" value={form.email} onChange={update('email')} />
         </label>
 
+        {offersShape && (
+          <label className="order-field">
+            <span>Shape *</span>
+            <select name="shape" required value={form.shape} onChange={update('shape')}>
+              <option value="Circle">Circle</option>
+              <option value="Square/rectangle">Square/rectangle</option>
+            </select>
+          </label>
+        )}
+
+        {isCircle && (
+          <label className="order-field">
+            <span>Size (inches) *</span>
+            <select name="circleSize" required value={form.circleSize} onChange={update('circleSize')}>
+              {circleSizes.map((size) => (
+                <option key={size} value={size}>
+                  {size} inches
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+
         <div className="order-row">
           <label className="order-field">
-            <span>Length (cm) *</span>
+            <span>Length (inches) *</span>
             <input
               name="length"
               type="number"
-              required
+              required={!isCircle}
+              disabled={isCircle}
               min="1"
               step="0.1"
               value={form.length}
@@ -137,11 +170,12 @@ export function CustomOrderPage() {
             />
           </label>
           <label className="order-field">
-            <span>Breadth (cm) *</span>
+            <span>Breadth (inches) *</span>
             <input
               name="breadth"
               type="number"
-              required
+              required={!isCircle}
+              disabled={isCircle}
               min="1"
               step="0.1"
               value={form.breadth}
