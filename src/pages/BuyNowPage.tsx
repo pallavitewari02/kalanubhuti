@@ -139,7 +139,7 @@ export function BuyNowPage() {
           </button>
         </form>
 
-      <Link className="brick-button gallery-button" to="/#shop">
+      <Link className="brick-button gallery-button" to="/shop">
         Back to Shop
       </Link>
     </main>

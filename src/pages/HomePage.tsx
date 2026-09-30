@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Facebook, Instagram, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Facebook, Instagram, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { CategoryExplorer } from '../components/CategoryExplorer';
 import { ZoomPhoto } from '../components/ZoomPhoto';
 import { ExhibitionSlider } from '../components/ExhibitionSlider';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { formatAboutParagraph } from '../components/AboutCopy';
 import { aboutImage, aboutPreviewParagraphs } from '../data/about';
 import { blogPosts } from '../data/blog';
-import { products } from '../data/gallery';
+import { gallerySlides, products } from '../data/gallery';
 
 const images = {
   hero: '/hero.jpg',
@@ -17,22 +16,36 @@ const images = {
 
 export function HomePage() {
   const location = useLocation();
+  const slides = gallerySlides();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [openProduct, setOpenProduct] = useState<{ name: string; image: string } | null>(null);
+  const [paused, setPaused] = useState(false);
+  const openSlide = openIndex === null ? null : slides[openIndex];
+
+  const stepSlide = (direction: number) => {
+    setOpenIndex((current) => {
+      if (current === null || slides.length === 0) return 0;
+      return (current + direction + slides.length) % slides.length;
+    });
+  };
 
   useEffect(() => {
-    if (!openProduct) return;
+    if (!openProduct && !openSlide) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpenProduct(null);
+      if (event.key === 'Escape') {
+        setOpenProduct(null);
+        setOpenIndex(null);
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [openProduct]);
+  }, [openProduct, openSlide]);
 
   useEffect(() => {
-    if (!location.hash) return;
-    const target = document.querySelector(location.hash);
-    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [location]);
+    const section = location.pathname === '/gallery' ? 'gallery' : location.pathname === '/shop' ? 'shop' : '';
+    if (!section) return;
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [location.pathname]);
 
   return (
     <main>
@@ -44,9 +57,9 @@ export function HomePage() {
             <br />
             Modern Expressions
           </h1>
-          <a href="#gallery" className="brick-button">
+          <Link to="/gallery" className="brick-button">
             Explore Gallery
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -66,8 +79,26 @@ export function HomePage() {
       </section>
 
       <section className="paper-section gallery-section" id="gallery">
-        <OrnamentalHeading>My Gallery</OrnamentalHeading>
-        <CategoryExplorer />
+        <OrnamentalHeading>My gallery</OrnamentalHeading>
+        <div
+          className={`studio-marquee${paused || openSlide ? ' is-paused' : ''}`}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div className="studio-track">
+            {[...slides, ...slides].map((slide, index) => (
+              <button
+                className="studio-slide"
+                type="button"
+                key={`${slide.image}-${index}`}
+                onClick={() => setOpenIndex(index % slides.length)}
+              >
+                <img src={slide.image} alt={slide.name} />
+                <span>{slide.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="shop-strip" id="shop">
@@ -153,6 +184,39 @@ export function HomePage() {
             <X size={22} />
           </button>
           <ZoomPhoto src={openProduct.image} alt={openProduct.name} />
+        </div>
+      )}
+      {openSlide && (
+        <div className="exhibition-lightbox" role="dialog" aria-modal="true" aria-label={openSlide.name}>
+          <button className="exhibition-close" type="button" aria-label="Close" onClick={() => setOpenIndex(null)}>
+            <X size={22} />
+          </button>
+          <button className="exhibition-nav exhibition-prev" type="button" aria-label="Previous photo" onClick={() => stepSlide(-1)}>
+            <ChevronLeft size={28} />
+          </button>
+          <div className="gallery-detail-view">
+            <ZoomPhoto src={openSlide.image} alt={openSlide.name} />
+            <p className="gallery-detail">
+              {openSlide.name}
+              <br />
+              {openSlide.artForm}
+              {openSlide.size ? (
+                <>
+                  <br />
+                  {openSlide.size}
+                </>
+              ) : null}
+              {openSlide.types.length > 0 ? (
+                <>
+                  <br />
+                  {openSlide.types.join(', ')}
+                </>
+              ) : null}
+            </p>
+          </div>
+          <button className="exhibition-nav exhibition-next" type="button" aria-label="Next photo" onClick={() => stepSlide(1)}>
+            <ChevronRight size={28} />
+          </button>
         </div>
       )}
     </main>

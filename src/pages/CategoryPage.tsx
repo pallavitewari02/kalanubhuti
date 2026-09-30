@@ -13,7 +13,7 @@ export function CategoryPage() {
       <main className="paper-section art-form-page">
         <OrnamentalHeading>Artwork not found</OrnamentalHeading>
         <p className="art-form-empty">This collection is not in the gallery yet.</p>
-        <Link className="brick-button gallery-button" to="/#gallery">
+        <Link className="brick-button gallery-button" to="/gallery">
           Back to Gallery
         </Link>
       </main>
@@ -47,7 +47,7 @@ export function CategoryPage() {
           ))}
         </div>
       )}
-      <Link className="brick-button gallery-button" to="/#gallery">
+      <Link className="brick-button gallery-button" to="/gallery">
         Back to Gallery
       </Link>
     </main>

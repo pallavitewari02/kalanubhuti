@@ -6,13 +6,13 @@ export function Layout() {
     <div className="kala-site">
       <div className="top-border" />
       <header className="kala-header">
-        <Link className="kala-brand" to="/#home">
+        <Link className="kala-brand" to="/">
           <img className="brand-logo" src="/logo.jpg" alt="" />
           <span>Kalanubhuti</span>
         </Link>
         <nav className="kala-nav" aria-label="Main navigation">
           <div className="nav-dropdown">
-            <Link to="/#gallery">Gallery</Link>
+            <Link to="/gallery">Gallery</Link>
             <ul className="nav-menu">
               {gallery
                 .filter((category) => category.id !== '2')
@@ -32,7 +32,7 @@ export function Layout() {
               ))}
             </ul>
           </div>
-          <Link to="/#shop">Shop</Link>
+          <Link to="/shop">Shop</Link>
           <Link to="/custom-order">Custom Order</Link>
           <Link to="/contact">Contact Us</Link>
         </nav>

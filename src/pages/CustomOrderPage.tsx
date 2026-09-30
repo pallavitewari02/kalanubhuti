@@ -68,7 +68,7 @@ export function CustomOrderPage() {
 
   return (
     <main className="paper-section order-page">
-      <OrnamentalHeading>Painting Order Form</OrnamentalHeading>
+      <OrnamentalHeading>Custom Order details</OrnamentalHeading>
       <form className="order-form custom-order-form" onSubmit={onSubmit}>
         <label className="order-field">
           <span>Name *</span>

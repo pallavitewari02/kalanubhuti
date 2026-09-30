@@ -16,7 +16,7 @@ export function AboutPage() {
         </div>
       </div>
 
-      <Link className="brick-button gallery-button" to="/#about">
+      <Link className="brick-button gallery-button" to="/">
         Back to Home
       </Link>
     </main>

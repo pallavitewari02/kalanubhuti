@@ -35,6 +35,8 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/gallery" element={<HomePage />} />
+          <Route path="/shop" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/buy-now" element={<BuyNowPage />} />

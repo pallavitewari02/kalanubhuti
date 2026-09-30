@@ -8,6 +8,7 @@ export function ExhibitionSlider() {
   const [hovered, setHovered] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const ordered = [...exhibition.slice(12), ...exhibition.slice(0, 12)];
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -21,9 +22,9 @@ export function ExhibitionSlider() {
     if (openIndex === null) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpenIndex(null);
-      if (event.key === 'ArrowRight') setOpenIndex((current) => (current === null ? 0 : (current + 1) % exhibition.length));
+      if (event.key === 'ArrowRight') setOpenIndex((current) => (current === null ? 0 : (current + 1) % ordered.length));
       if (event.key === 'ArrowLeft') {
-        setOpenIndex((current) => (current === null ? 0 : (current - 1 + exhibition.length) % exhibition.length));
+        setOpenIndex((current) => (current === null ? 0 : (current - 1 + ordered.length) % ordered.length));
       }
     };
     window.addEventListener('keydown', onKey);
@@ -31,13 +32,13 @@ export function ExhibitionSlider() {
   }, [openIndex]);
 
   const paused = hovered || openIndex !== null || reduceMotion;
-  const loop = reduceMotion ? exhibition : [...exhibition, ...exhibition];
-  const openPiece = openIndex === null ? undefined : exhibition[openIndex];
+  const loop = reduceMotion ? ordered : [...ordered, ...ordered];
+  const openPiece = openIndex === null ? undefined : ordered[openIndex];
 
   const step = (direction: number) => {
     setOpenIndex((current) => {
       if (current === null) return 0;
-      return (current + direction + exhibition.length) % exhibition.length;
+      return (current + direction + ordered.length) % ordered.length;
     });
   };
 
@@ -51,7 +52,7 @@ export function ExhibitionSlider() {
       >
         <div className="exhibition-track">
           {loop.map((piece, index) => {
-            const realIndex = index % exhibition.length;
+            const realIndex = index % ordered.length;
             return (
               <button
                 className="exhibition-slide"

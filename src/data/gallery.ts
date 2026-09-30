@@ -6,6 +6,7 @@ export type Product = {
   image: string;
   price: string;
   featured?: boolean;
+  size?: string;
 };
 
 export type Subcategory = {
@@ -47,6 +48,65 @@ export const products: Product[] = gallery.flatMap((category) => {
   }
   return featuredChildren;
 });
+
+export type GallerySlide = {
+  name: string;
+  image: string;
+  artForm: string;
+  types: string[];
+  size?: string;
+};
+
+export function gallerySlides(): GallerySlide[] {
+  const buckets = new Map<string, GallerySlide[]>();
+  const add = (slide: GallerySlide) => {
+    const list = buckets.get(slide.artForm) ?? [];
+    list.push(slide);
+    buckets.set(slide.artForm, list);
+  };
+  for (const category of gallery) {
+    if (category.id === '2') continue;
+    for (const child of category.children ?? []) {
+      if (!child.image) continue;
+      for (const product of child.products) {
+        if (!product.image) continue;
+        add({
+          name: product.name,
+          image: product.image,
+          artForm: child.name,
+          types: child.typeOfPainting ?? [],
+          size: product.size,
+        });
+      }
+    }
+    for (const product of category.products ?? []) {
+      if (!product.image) continue;
+      add({
+        name: product.name,
+        image: product.image,
+        artForm: category.name,
+        types: [],
+        size: product.size,
+      });
+    }
+  }
+  const madhubani = buckets.get('Madhubani') ?? [];
+  const firstIndex = madhubani.findIndex((slide) => slide.name === 'Lord Ganesha');
+  const first = firstIndex >= 0 ? madhubani.splice(firstIndex, 1)[0] : undefined;
+  const order = ['Madhubani', 'Lippan', 'Pichwai', 'Gond', 'Modern Contemporary'];
+  const mixed: GallerySlide[] = [];
+  let added = true;
+  while (added) {
+    added = false;
+    for (const artForm of order) {
+      const next = buckets.get(artForm)?.shift();
+      if (!next) continue;
+      mixed.push(next);
+      added = true;
+    }
+  }
+  return first ? [first, ...mixed] : mixed;
+}
 
 export function subcategoriesForType(typeName: string): Subcategory[] {
   return gallery.flatMap((category) =>

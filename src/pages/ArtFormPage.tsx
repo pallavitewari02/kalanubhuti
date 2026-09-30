@@ -12,7 +12,7 @@ export function ArtFormPage() {
       <main className="paper-section art-form-page">
         <OrnamentalHeading>Artwork not found</OrnamentalHeading>
         <p className="art-form-empty">This art form is not in the gallery yet.</p>
-        <Link className="brick-button gallery-button" to="/#gallery">
+        <Link className="brick-button gallery-button" to="/gallery">
           Back to Gallery
         </Link>
       </main>
@@ -45,7 +45,7 @@ export function ArtFormPage() {
           ))}
         </div>
       )}
-      <Link className="brick-button gallery-button" to="/#gallery">
+      <Link className="brick-button gallery-button" to="/gallery">
         Back to Gallery
       </Link>
     </main>
