@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import type { Subcategory } from '../data/gallery';
+import { artFormPathById, type Subcategory } from '../data/gallery';
 
 type ArtCoverflowProps = {
   nodes: Subcategory[];
@@ -77,7 +77,7 @@ export function ArtCoverflow({ nodes }: ArtCoverflowProps) {
           return (
             <Link
               key={node.id}
-              to={`/art/${node.id}`}
+              to={artFormPathById(node.id)}
               className={`coverflow-card${isCenter ? ' is-center' : ''} depth-${abs}`}
               style={{
                 transform: `translateX(${translateX}px) scale(${scale})`,

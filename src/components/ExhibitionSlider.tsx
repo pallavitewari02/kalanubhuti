@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { exhibition } from '../data/exhibition';
 import { OrnamentalHeading } from './OrnamentalHeading';
+import { ZoomPhoto } from './ZoomPhoto';
 
 export function ExhibitionSlider() {
   const [hovered, setHovered] = useState(false);
@@ -73,7 +74,7 @@ export function ExhibitionSlider() {
           <button className="exhibition-nav exhibition-prev" type="button" aria-label="Previous photo" onClick={() => step(-1)}>
             <ChevronLeft size={28} />
           </button>
-          <img src={openPiece.image} alt={openPiece.title} />
+          <ZoomPhoto src={openPiece.image} alt={openPiece.title} />
           <button className="exhibition-nav exhibition-next" type="button" aria-label="Next photo" onClick={() => step(1)}>
             <ChevronRight size={28} />
           </button>

@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
-import { gallery } from '../data/gallery';
+import { artFormPath, categoryPath, gallery } from '../data/gallery';
 
 export function Layout() {
   return (
@@ -18,13 +18,13 @@ export function Layout() {
                 .filter((category) => category.id !== '2')
                 .map((category) => (
                 <li key={category.id}>
-                  <Link className="nav-parent" to={`/category/${category.id}`}>
+                  <Link className="nav-parent" to={categoryPath(category)}>
                     {category.name}
                   </Link>
                   {category.children
                     ?.filter((child) => child.image)
                     .map((child) => (
-                      <Link className="nav-child" key={child.id} to={`/art/${child.id}`}>
+                      <Link className="nav-child" key={child.id} to={artFormPath(category, child)}>
                         {child.name}
                       </Link>
                     ))}

@@ -1,22 +1,11 @@
-import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { X } from 'lucide-react';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
-import { findGallery } from '../data/gallery';
+import { findArtForm, paintingPath } from '../data/gallery';
 
 export function ArtFormPage() {
-  const { slug } = useParams();
-  const form = slug ? findGallery(slug) : undefined;
-  const [openImage, setOpenImage] = useState<{ src: string; name: string } | null>(null);
-
-  useEffect(() => {
-    if (!openImage) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpenImage(null);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [openImage]);
+  const { categorySlug, artSlug } = useParams();
+  const match = categorySlug && artSlug ? findArtForm(categorySlug, artSlug) : undefined;
+  const form = match?.child;
 
   if (!form) {
     return (
@@ -48,30 +37,17 @@ export function ArtFormPage() {
       ) : (
         <div className="art-form-grid">
           {photos.map((photo) => (
-            <button
-              className="gallery-card"
-              type="button"
-              key={photo.image}
-              onClick={() => setOpenImage({ src: photo.image, name: photo.name })}
-            >
+            <Link className="gallery-card" key={photo.image} to={match && 'slug' in photo ? paintingPath(match.category, photo, match.child) : '#'}>
               <img src={photo.image} alt={photo.name} />
               <h3>{photo.name}</h3>
               {photo.price && <strong>{photo.price}</strong>}
-            </button>
+            </Link>
           ))}
         </div>
       )}
       <Link className="brick-button gallery-button" to="/#gallery">
         Back to Gallery
       </Link>
-      {openImage && (
-        <div className="exhibition-lightbox" role="dialog" aria-modal="true" aria-label={openImage.name}>
-          <button className="exhibition-close" type="button" aria-label="Close" onClick={() => setOpenImage(null)}>
-            <X size={22} />
-          </button>
-          <img src={openImage.src} alt={openImage.name} />
-        </div>
-      )}
     </main>
   );
 }

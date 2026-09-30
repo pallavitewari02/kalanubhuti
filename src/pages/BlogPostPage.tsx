@@ -12,6 +12,7 @@ export function BlogPostPage() {
     <main className="paper-section about-page">
       <OrnamentalHeading>{post.title}</OrnamentalHeading>
       <article className="blog-post">
+        <img className="blog-hero" src={post.image} alt={post.imageAlt} />
         <p>{post.intro}</p>
         <h2>{post.heading}</h2>
         {post.paragraphs.map((paragraph) => (

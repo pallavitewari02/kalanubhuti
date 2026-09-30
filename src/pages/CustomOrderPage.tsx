@@ -20,8 +20,6 @@ export function CustomOrderPage() {
     address: '',
     pincode: '',
   });
-  const [referenceImage, setReferenceImage] = useState<File | null>(null);
-  const [referenceError, setReferenceError] = useState('');
   const [error, setError] = useState('');
   const [sending, setSending] = useState(false);
 
@@ -43,7 +41,6 @@ export function CustomOrderPage() {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (referenceError) return;
     setError('');
     setSending(true);
     const artForm = artForms.find((item) => item.id === form.subcategory)?.name ?? '';
@@ -179,35 +176,6 @@ export function CustomOrderPage() {
             />
           </label>
         </div>
-
-        <label className="order-field">
-          <span>Reference image (optional)</span>
-          <input
-            name="referenceImage"
-            type="file"
-            accept="image/*"
-            onChange={(event) => {
-              const file = event.target.files?.[0];
-              if (!file) {
-                setReferenceImage(null);
-                setReferenceError('');
-                return;
-              }
-              if (file.size > 5 * 1024 * 1024) {
-                event.target.value = '';
-                setReferenceImage(null);
-                setReferenceError('The image must be 5 MB or smaller.');
-                return;
-              }
-              setReferenceError('');
-              setReferenceImage(file);
-            }}
-          />
-          <small>Upload an image of size less than or equal to 5 MB.</small>
-          <small>The photo is saved on this page only. It is not emailed until file upload is available.</small>
-          {referenceImage && <small>{referenceImage.name}</small>}
-          {referenceError && <small>{referenceError}</small>}
-        </label>
 
         <p className="order-note">
           Delivery charges may apply and vary based on the size of painting and delivery location.

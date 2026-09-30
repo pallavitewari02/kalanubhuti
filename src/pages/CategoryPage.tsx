@@ -1,24 +1,12 @@
-import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { X } from 'lucide-react';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
-import { findGallery } from '../data/gallery';
+import { artFormPath, findCategoryBySlug, paintingPath } from '../data/gallery';
 
 export function CategoryPage() {
-  const { id } = useParams();
-  const category = id ? findGallery(id) : undefined;
+  const { categorySlug } = useParams();
+  const category = categorySlug ? findCategoryBySlug(categorySlug) : undefined;
   const children = category && 'children' in category ? category.children?.filter((child) => child.image) : undefined;
   const paintings = category && 'products' in category ? category.products : undefined;
-  const [openImage, setOpenImage] = useState<{ src: string; name: string } | null>(null);
-
-  useEffect(() => {
-    if (!openImage) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpenImage(null);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [openImage]);
 
   if (!category) {
     return (
@@ -42,7 +30,7 @@ export function CategoryPage() {
       {children && children.length > 0 && (
         <div className="art-form-grid">
           {children.map((child) => (
-            <Link className="gallery-card" key={child.id} to={`/art/${child.id}`}>
+            <Link className="gallery-card" key={child.id} to={artFormPath(category, child)}>
               <img src={child.image} alt={child.name} />
               <h3>{child.name}</h3>
             </Link>
@@ -52,29 +40,16 @@ export function CategoryPage() {
       {paintings && paintings.length > 0 && (
         <div className="art-form-grid">
           {paintings.map((painting) => (
-            <button
-              className="gallery-card"
-              type="button"
-              key={painting.image}
-              onClick={() => setOpenImage({ src: painting.image, name: painting.name })}
-            >
+            <Link className="gallery-card" key={painting.image} to={paintingPath(category, painting)}>
               <img src={painting.image} alt={painting.name} />
               <h3>{painting.name}</h3>
-            </button>
+            </Link>
           ))}
         </div>
       )}
       <Link className="brick-button gallery-button" to="/#gallery">
         Back to Gallery
       </Link>
-      {openImage && (
-        <div className="exhibition-lightbox" role="dialog" aria-modal="true" aria-label={openImage.name}>
-          <button className="exhibition-close" type="button" aria-label="Close" onClick={() => setOpenImage(null)}>
-            <X size={22} />
-          </button>
-          <img src={openImage.src} alt={openImage.name} />
-        </div>
-      )}
     </main>
   );
 }

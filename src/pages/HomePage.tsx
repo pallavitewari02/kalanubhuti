@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Facebook, Instagram, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { CategoryExplorer } from '../components/CategoryExplorer';
+import { ZoomPhoto } from '../components/ZoomPhoto';
 import { ExhibitionSlider } from '../components/ExhibitionSlider';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { formatAboutParagraph } from '../components/AboutCopy';
@@ -151,7 +152,7 @@ export function HomePage() {
           <button className="exhibition-close" type="button" aria-label="Close" onClick={() => setOpenProduct(null)}>
             <X size={22} />
           </button>
-          <img src={openProduct.image} alt={openProduct.name} />
+          <ZoomPhoto src={openProduct.image} alt={openProduct.name} />
         </div>
       )}
     </main>
