@@ -5,12 +5,11 @@ import { artFormPath, findCategoryPainting, findChildPainting } from '../data/ga
 
 export function PaintingPage() {
   const { categorySlug = '', artSlug = '', paintingSlug } = useParams();
-  const match = paintingSlug
-    ? findChildPainting(categorySlug, artSlug, paintingSlug)
-    : findCategoryPainting(categorySlug, artSlug);
-  const product = match?.product;
-  const category = match?.category;
-  const child = match && 'child' in match ? match.child : undefined;
+  const childMatch = paintingSlug ? findChildPainting(categorySlug, artSlug, paintingSlug) : undefined;
+  const categoryMatch = paintingSlug ? undefined : findCategoryPainting(categorySlug, artSlug);
+  const product = childMatch?.product ?? categoryMatch?.product;
+  const category = childMatch?.category ?? categoryMatch?.category;
+  const child = childMatch?.child;
 
   if (!product || !category) {
     return (

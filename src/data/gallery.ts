@@ -7,6 +7,7 @@ export type Product = {
   price: string;
   featured?: boolean;
   size?: string;
+  paintingType?: string;
 };
 
 export type Subcategory = {
@@ -14,6 +15,7 @@ export type Subcategory = {
   name: string;
   slug: string;
   desc?: string;
+  detail?: string;
   image: string;
   typeOfPainting?: string[];
   products: Product[];
@@ -24,6 +26,7 @@ export type Category = {
   name: string;
   slug: string;
   desc?: string;
+  detail?: string;
   image: string;
   price?: string;
   featured?: boolean;
@@ -53,7 +56,9 @@ export type GallerySlide = {
   name: string;
   image: string;
   artForm: string;
-  types: string[];
+  detail: string;
+  paintingType: string;
+  price: string;
   size?: string;
 };
 
@@ -74,7 +79,9 @@ export function gallerySlides(): GallerySlide[] {
           name: product.name,
           image: product.image,
           artForm: child.name,
-          types: child.typeOfPainting ?? [],
+          detail: child.detail ?? '',
+          paintingType: product.paintingType ?? '',
+          price: product.price,
           size: product.size,
         });
       }
@@ -85,7 +92,9 @@ export function gallerySlides(): GallerySlide[] {
         name: product.name,
         image: product.image,
         artForm: category.name,
-        types: [],
+        detail: category.detail ?? '',
+        paintingType: product.paintingType ?? '',
+        price: product.price,
         size: product.size,
       });
     }

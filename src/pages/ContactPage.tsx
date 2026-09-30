@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { BackHome } from '../components/BackHome';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { submitWeb3Form } from '../lib/web3forms';
 
@@ -72,9 +73,7 @@ export function ContactPage() {
         </button>
       </form>
 
-      <Link className="brick-button gallery-button" to="/#contact">
-        Back to Home
-      </Link>
+      <BackHome className="brick-button gallery-button">Back to Home</BackHome>
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { BackHome } from '../components/BackHome';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { paintingTypes } from '../data/customOrder';
 import { subcategoriesForType } from '../data/gallery';
@@ -187,9 +188,7 @@ export function CustomOrderPage() {
         </button>
       </form>
 
-      <Link className="brick-button gallery-button" to="/#custom-order">
-        Back to Home
-      </Link>
+      <BackHome className="brick-button gallery-button">Back to Home</BackHome>
     </main>
   );
 }

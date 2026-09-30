@@ -17,18 +17,23 @@
           {
             "name": "Lord Buddha",
             "image": "/Art%20pics/Indian%20Folk%20Art/Madhubani/Lord%20Buddha.jpeg",
-            "price": "₹2,500",
+            "price": "₹3,000",
             "featured": true,
-            "slug": "LordBuddha"
+            "slug": "LordBuddha",
+            "paintingType": "Canvas",
+            "size": "12 x 12 inches"
           },
           {
             "name": "Lord Ganesha",
             "image": "/Art%20pics/Indian%20Folk%20Art/Madhubani/Lord%20Ganesha.jpeg",
-            "price": "₹2,500",
-            "slug": "LordGanesha"
+            "price": "₹3,000",
+            "slug": "LordGanesha",
+            "paintingType": "Paper",
+            "size": "22 x 15 inches"
           }
         ],
-        "slug": "Madhubani"
+        "slug": "Madhubani",
+        "detail": "Madhubani art is a traditional painting style from Bihar, India, known for its bold outlines, vibrant natural colors, and intricate patterns. It often depicts themes of mythology, nature, and daily life, filling every space with symbolic motifs like fish, peacocks, and the sun."
       },
       {
         "id": "1.2",
@@ -39,80 +44,105 @@
         ],
         "products": [
           {
-            "name": "Circle-1",
+            "name": "Rangoli-Green",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-1.jpeg",
-            "price": "₹2,500",
+            "price": "₹1,500",
             "featured": true,
-            "slug": "Circle1"
+            "slug": "RangoliGreen",
+            "paintingType": "MDF Board",
+            "size": "16 inches"
           },
           {
-            "name": "Circle-2",
+            "name": "Swastik",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-2.jpeg",
-            "price": "₹2,500",
-            "slug": "Circle2"
+            "price": "₹1,500",
+            "slug": "Swastik",
+            "paintingType": "MDF Board",
+            "size": "16 inches"
           },
           {
-            "name": "Circle-3",
+            "name": "Mirror-Green",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-3.jpeg",
-            "price": "₹2,500",
-            "slug": "Circle3"
+            "price": "₹1,100",
+            "slug": "MirrorGreen",
+            "paintingType": "MDF Board",
+            "size": "14 inches"
           },
           {
-            "name": "Circle-4",
+            "name": "Mirror-Yellow",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-4.jpeg",
-            "price": "₹2,500",
-            "slug": "Circle4"
+            "price": "₹1,500",
+            "slug": "MirrorYellow",
+            "paintingType": "MDF Board",
+            "size": "16 inches"
           },
           {
-            "name": "Circle-5",
+            "name": "Mirror-Blue",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-5.jpeg",
-            "price": "₹2,500",
-            "slug": "Circle5"
+            "price": "₹1,100",
+            "slug": "MirrorBlue",
+            "paintingType": "MDF Board",
+            "size": "14 inches"
           },
           {
-            "name": "Circle-Jagganath",
+            "name": "Lippan-Jagganathji",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-Jagganath.jpeg",
-            "price": "₹2,500",
-            "slug": "CircleJagganath"
+            "price": "₹1,500",
+            "slug": "LippanJagganathji",
+            "paintingType": "MDF Board",
+            "size": "16 inches"
           },
           {
             "name": "Jai Jagganath",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Jai%20Jagganath.jpeg",
             "price": "₹2,500",
-            "slug": "JaiJagganath"
+            "slug": "JaiJagganath",
+            "paintingType": "MDF Board",
+            "size": "24 x 12 inches"
           },
           {
-            "name": "Om",
+            "name": "OM",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Om.jpeg",
-            "price": "₹2,500",
-            "slug": "Om"
+            "price": "₹1,100",
+            "slug": "OM",
+            "paintingType": "MDF Board",
+            "size": "14 inches"
           },
           {
-            "name": "Square mirror-2",
+            "name": "Rangoli Square-Multicolour",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror-2.jpeg",
-            "price": "₹2,500",
-            "slug": "Squaremirror2"
+            "price": "₹1,100",
+            "slug": "RangoliSquareMulticolour",
+            "paintingType": "MDF Board",
+            "size": "12 x 12 inches"
           },
           {
-            "name": "Square mirror-3",
+            "name": "Mirror Square-Blue",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror-3.jpeg",
-            "price": "₹2,500",
-            "slug": "Squaremirror3"
+            "price": "₹1,100",
+            "slug": "MirrorSquareBlue",
+            "paintingType": "MDF Board",
+            "size": "12 x 12 inches"
           },
           {
-            "name": "Square mirror-4",
+            "name": "Mirror Square-Brown",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror-4.jpeg",
-            "price": "₹2,500",
-            "slug": "Squaremirror4"
+            "price": "₹1,100",
+            "slug": "MirrorSquareBrown",
+            "paintingType": "MDF Board",
+            "size": "12 x 12 inches"
           },
           {
-            "name": "Square mirror",
+            "name": "Rangoli Square-Green",
             "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror.jpeg",
-            "price": "₹2,500",
-            "slug": "Squaremirror"
+            "price": "₹1,100",
+            "slug": "RangoliSquareGreen",
+            "paintingType": "MDF Board",
+            "size": "12 x 12 inches"
           }
         ],
-        "slug": "Lippan"
+        "slug": "Lippan",
+        "detail": "Lippan art, also known as mud mirror work, is a traditional craft from Kutch, Gujarat. It combines clay and tiny mirrors to create intricate wall designs that shimmer beautifully under light — a perfect blend of earth and reflection."
       },
       {
         "id": "1.3",
@@ -127,20 +157,25 @@
         "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Circle-rainbow.jpeg",
         "products": [
           {
-            "name": "Circle-rainbow",
+            "name": "Kalpvriksha",
             "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Circle-rainbow.jpeg",
             "price": "₹2,500",
             "featured": true,
-            "slug": "Circlerainbow"
+            "slug": "Kalpvriksha",
+            "paintingType": "MDF Board",
+            "size": "30 inches"
           },
           {
             "name": "Sri Nath ji",
             "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Sri%20Nath%20ji.jpeg",
-            "price": "₹2,500",
-            "slug": "SriNathji"
+            "price": "₹3,000",
+            "slug": "SriNathji",
+            "paintingType": "Canvas",
+            "size": "22 x 30 inches"
           }
         ],
-        "slug": "Pichwai"
+        "slug": "Pichwai",
+        "detail": "Pichwai art is a devotional painting tradition from Nathdwara, Rajasthan, created to depict tales of Lord Krishna, especially his childhood form as Shrinathji. These intricate works are rich in detail, often featuring lotuses, cows, and temple rituals, blending spirituality with artistic grandeur."
       },
       {
         "id": "1.5",
@@ -155,13 +190,16 @@
         "image": "/Art%20pics/Indian%20Folk%20Art/Gond/Gond-1.jpeg",
         "products": [
           {
-            "name": "Gond-1",
+            "name": "Lord Krishna",
             "image": "/Art%20pics/Indian%20Folk%20Art/Gond/Gond-1.jpeg",
-            "price": "₹2,500",
-            "slug": "Gond1"
+            "price": "₹1,500",
+            "slug": "LordKrishna",
+            "paintingType": "Canvas",
+            "size": "12 x 12 inches"
           }
         ],
-        "slug": "Gond"
+        "slug": "Gond",
+        "detail": "Gond art originates from the tribal communities of Madhya Pradesh and is known for its vibrant storytelling through dots and lines. It transforms everyday life, folklore, and nature into rhythmic, colorful patterns that celebrate harmony between humans and the natural world."
       },
       {
         "id": "1.7",
@@ -191,34 +229,45 @@
       {
         "name": "Bihar Cultural theme",
         "image": "/Art%20pics/Modern%20Contemporary/Bihar%20Cultural%20theme.jpg",
-        "price": "₹1,500",
-        "slug": "BiharCulturaltheme"
+        "price": "₹2,500",
+        "slug": "BiharCulturaltheme",
+        "paintingType": "Canvas",
+        "size": "18 inches"
       },
       {
         "name": "Shiv Parivar",
         "image": "/Art%20pics/Modern%20Contemporary/Shiv%20Parivar.jpg",
-        "price": "₹1,500",
-        "slug": "ShivParivar"
+        "price": "₹3,500",
+        "slug": "ShivParivar",
+        "paintingType": "Paper",
+        "size": "18 x 24 inches"
       },
       {
         "name": "Lord Hanuman",
         "image": "/Art%20pics/Modern%20Contemporary/Lord%20Hanuman.jpg",
-        "price": "₹1,500",
-        "slug": "LordHanuman"
+        "price": "₹3,500",
+        "slug": "LordHanuman",
+        "paintingType": "Canvas",
+        "size": "18 x 24 inches"
       },
       {
         "name": "Lord Ganesha",
         "image": "/Art%20pics/Modern%20Contemporary/Lord%20Ganesha.jpg",
-        "price": "₹1,500",
-        "slug": "LordGanesha"
+        "price": "₹3,500",
+        "slug": "LordGanesha",
+        "paintingType": "Canvas",
+        "size": "18 x 24 inches"
       },
       {
         "name": "Radha Krishna",
         "image": "/Art%20pics/Modern%20Contemporary/Radha%20Krishna.jpeg",
-        "price": "₹1,500",
-        "slug": "RadhaKrishna"
+        "price": "₹3,500",
+        "slug": "RadhaKrishna",
+        "paintingType": "Paper",
+        "size": "18 x 24 inches"
       }
     ],
-    "slug": "ModernContemporary"
+    "slug": "ModernContemporary",
+    "detail": "Modern Contemporary Art is a broad category of creative expression that emerged in the late 20th century and continues today. It emphasizes innovation, experimentation, and breaking away from traditional techniques — often blending diverse media, abstract forms, and conceptual ideas to reflect current social, cultural, and personal themes."
   }
 ]

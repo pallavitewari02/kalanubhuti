@@ -91,6 +91,24 @@ button.gallery-card { width: 100%; border: 0; padding: 0; font: inherit; color: 
 .mobile-prefix { display: grid; place-items: center; padding: 0 10px; border: 1px solid var(--line); border-right: 0; border-radius: 3px 0 0 3px; background: #f3ead9; font: 14px Arial, sans-serif; }
 .mobile-input input { border-radius: 0 3px 3px 0; }
 .studio-marquee { overflow: hidden; }.studio-marquee.is-paused .studio-track { animation-play-state: paused; }.studio-track { display: flex; gap: 18px; width: max-content; animation: exhibition-slide 80s linear infinite; }.studio-slide { flex: 0 0 240px; border: 0; padding: 0; background: transparent; cursor: pointer; color: inherit; }.studio-slide img { display: block; width: 240px; height: 280px; object-fit: contain; background: transparent; box-shadow: none; }.studio-slide span { display: block; margin-top: 8px; text-align: center; color: #2f1b15; font-size: 14px; }.gallery-detail-view { display: flex; flex-direction: column; align-items: center; width: min(920px, 100%); max-height: 100%; }.gallery-detail-view .zoom-stage { height: auto; max-height: calc(100vh - 210px); }.gallery-detail-view .zoom-stage img { max-height: calc(100vh - 210px); width: auto; max-width: 100%; }.zoom-stage img { max-height: calc(100vh - 140px); width: auto; }.gallery-detail { margin: 10px 0 0; color: #fff5df; text-align: center; font: 15px/1.5 Arial, sans-serif; }
+.artwork-popup { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(260px, 380px); gap: 28px; width: min(1080px, calc(100vw - 140px)); max-height: calc(100vh - 48px); overflow: auto; padding: 28px; background: #fbf6ee; color: #1e2a3a; border-radius: 16px; }
+.artwork-popup-main .zoom-photo.is-below { position: relative; }
+.artwork-popup-main .zoom-stage { position: relative; height: min(380px, 46vh); overflow: hidden; background: #fff; border: 1px solid #eadfce; border-radius: 8px; }
+.artwork-popup-main .zoom-stage img { max-height: min(360px, 44vh); box-shadow: none; }
+.artwork-description { margin: 16px 0 0; color: #3d4a5c; font: 15px/1.6 Georgia, 'Times New Roman', serif; }
+.artwork-summary h2 { margin: 0 0 18px; color: #1b2838; font: 700 clamp(28px, 3vw, 40px)/1.15 Georgia, 'Times New Roman', serif; }
+.artwork-row { display: grid; gap: 4px; padding: 12px 0; border-top: 1px solid #e4d8c6; }
+.artwork-row span { color: #8b93a0; font: 14px Arial, sans-serif; }
+.artwork-row strong { color: #243044; font: 600 18px Georgia, 'Times New Roman', serif; }
+.artwork-price strong { font-size: 28px; font-weight: 700; }
+.artwork-buy { display: flex; align-items: center; justify-content: center; margin-top: 18px; padding: 14px 18px; border-radius: 8px; color: #fff; background: #f08a1a; text-decoration: none; font: bold 16px Arial, sans-serif; }
+.artwork-buy:hover { background: #d9740d; }
+.zoom-photo.is-below .zoom-controls.is-below { position: static; justify-content: flex-start; margin-top: 12px; }
+.zoom-photo.is-below .zoom-controls button { width: 36px; height: 36px; color: #301912; background: #fff; border: 1px solid #d9cbb6; }
+.zoom-photo.is-below .zoom-controls button.is-on { color: #fff5df; background: #6d251a; }
+.zoom-controls svg { width: 18px; height: 18px; display: block; }
+.zoom-lens { position: absolute; width: 144px; height: 144px; margin: -72px 0 0 -72px; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 8px 20px rgba(28, 12, 6, .35); pointer-events: none; background-repeat: no-repeat; z-index: 3; }
+@media (max-width: 800px) { .artwork-popup { grid-template-columns: 1fr; width: min(560px, calc(100vw - 88px)); } }
 .exhibition-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 900px; margin: 0 auto; }
 .exhibition-home { overflow: hidden; }
 .exhibition-marquee { overflow: hidden; }

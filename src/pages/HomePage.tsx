@@ -194,25 +194,36 @@ export function HomePage() {
           <button className="exhibition-nav exhibition-prev" type="button" aria-label="Previous photo" onClick={() => stepSlide(-1)}>
             <ChevronLeft size={28} />
           </button>
-          <div className="gallery-detail-view">
-            <ZoomPhoto src={openSlide.image} alt={openSlide.name} />
-            <p className="gallery-detail">
-              {openSlide.name}
-              <br />
-              {openSlide.artForm}
-              {openSlide.size ? (
-                <>
-                  <br />
-                  {openSlide.size}
-                </>
-              ) : null}
-              {openSlide.types.length > 0 ? (
-                <>
-                  <br />
-                  {openSlide.types.join(', ')}
-                </>
-              ) : null}
-            </p>
+          <div className="artwork-popup">
+            <div className="artwork-popup-main">
+              <ZoomPhoto src={openSlide.image} alt={openSlide.name} controlsBelow />
+              {openSlide.detail ? <p className="artwork-description">{openSlide.detail}</p> : null}
+            </div>
+            <aside className="artwork-summary">
+              <h2>{openSlide.name}</h2>
+              <div className="artwork-row">
+                <span>Art Form:</span>
+                <strong>{openSlide.artForm}</strong>
+              </div>
+              <div className="artwork-row">
+                <span>Painting Type</span>
+                <strong>{openSlide.paintingType}</strong>
+              </div>
+              <div className="artwork-row">
+                <span>Size:</span>
+                <strong>{openSlide.size}</strong>
+              </div>
+              <div className="artwork-row artwork-price">
+                <span>Price:</span>
+                <strong>{openSlide.price}</strong>
+              </div>
+              <Link
+                className="artwork-buy"
+                to={`/buy-now?product=${encodeURIComponent(openSlide.name)}&image=${encodeURIComponent(openSlide.image)}`}
+              >
+                Buy now
+              </Link>
+            </aside>
           </div>
           <button className="exhibition-nav exhibition-next" type="button" aria-label="Next photo" onClick={() => stepSlide(1)}>
             <ChevronRight size={28} />
