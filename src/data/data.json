@@ -3,7 +3,7 @@
     "id": "1",
     "name": "Indian Folk Art",
     "desc": "Indian Folk Art gathers paintings that grew in villages and courts across the country. Madhubani fills the surface with fine line and symbol. Lippan sets mirrors into clay, while Meenakari and Pichwai bring enamel colour and devotional scenes. Rajasthani, Gond, and Warli each keep their own marks, stories, and way of seeing the world.",
-    "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-Jagganath.jpeg",
+    "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Lippan-Jagganathji.jpeg",
     "children": [
       {
         "id": "1.1",
@@ -38,14 +38,14 @@
       {
         "id": "1.2",
         "name": "Lippan",
-        "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-1.jpeg",
+        "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Rangoli-Green.jpeg",
         "typeOfPainting": [
           "Paper Painting"
         ],
         "products": [
           {
             "name": "Rangoli-Green",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-1.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Rangoli-Green.jpeg",
             "price": "₹1,500",
             "featured": true,
             "slug": "RangoliGreen",
@@ -54,7 +54,7 @@
           },
           {
             "name": "Swastik",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-2.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Swastik.jpeg",
             "price": "₹1,500",
             "slug": "Swastik",
             "paintingType": "MDF Board",
@@ -62,7 +62,7 @@
           },
           {
             "name": "Mirror-Green",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-3.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Mirror-Green.jpeg",
             "price": "₹1,100",
             "slug": "MirrorGreen",
             "paintingType": "MDF Board",
@@ -70,7 +70,7 @@
           },
           {
             "name": "Mirror-Yellow",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-4.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Mirror-Yellow.jpeg",
             "price": "₹1,500",
             "slug": "MirrorYellow",
             "paintingType": "MDF Board",
@@ -78,7 +78,7 @@
           },
           {
             "name": "Mirror-Blue",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-5.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Mirror-Blue.jpeg",
             "price": "₹1,100",
             "slug": "MirrorBlue",
             "paintingType": "MDF Board",
@@ -86,7 +86,7 @@
           },
           {
             "name": "Lippan-Jagganathji",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Circle-Jagganath.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Lippan-Jagganathji.jpeg",
             "price": "₹1,500",
             "slug": "LippanJagganathji",
             "paintingType": "MDF Board",
@@ -102,7 +102,7 @@
           },
           {
             "name": "OM",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Om.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/OM.jpeg",
             "price": "₹1,100",
             "slug": "OM",
             "paintingType": "MDF Board",
@@ -110,7 +110,7 @@
           },
           {
             "name": "Rangoli Square-Multicolour",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror-2.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Rangoli%20Square-Multicolour.jpeg",
             "price": "₹1,100",
             "slug": "RangoliSquareMulticolour",
             "paintingType": "MDF Board",
@@ -118,7 +118,7 @@
           },
           {
             "name": "Mirror Square-Blue",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror-3.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Mirror%20Square-Blue.jpeg",
             "price": "₹1,100",
             "slug": "MirrorSquareBlue",
             "paintingType": "MDF Board",
@@ -126,7 +126,7 @@
           },
           {
             "name": "Mirror Square-Brown",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror-4.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Mirror%20Square-Brown.jpeg",
             "price": "₹1,100",
             "slug": "MirrorSquareBrown",
             "paintingType": "MDF Board",
@@ -134,7 +134,7 @@
           },
           {
             "name": "Rangoli Square-Green",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Square%20mirror.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Rangoli%20Square-Green.jpeg",
             "price": "₹1,100",
             "slug": "RangoliSquareGreen",
             "paintingType": "MDF Board",
@@ -154,11 +154,11 @@
       {
         "id": "1.4",
         "name": "Pichwai",
-        "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Circle-rainbow.jpeg",
+        "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Kalpvriksha.jpeg",
         "products": [
           {
             "name": "Kalpvriksha",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Circle-rainbow.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Kalpvriksha.jpeg",
             "price": "₹2,500",
             "featured": true,
             "slug": "Kalpvriksha",
@@ -187,11 +187,11 @@
       {
         "id": "1.6",
         "name": "Gond",
-        "image": "/Art%20pics/Indian%20Folk%20Art/Gond/Gond-1.jpeg",
+        "image": "/Art%20pics/Indian%20Folk%20Art/Gond/Lord%20Krishna.jpeg",
         "products": [
           {
             "name": "Lord Krishna",
-            "image": "/Art%20pics/Indian%20Folk%20Art/Gond/Gond-1.jpeg",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Gond/Lord%20Krishna.jpeg",
             "price": "₹1,500",
             "slug": "LordKrishna",
             "paintingType": "Canvas",
