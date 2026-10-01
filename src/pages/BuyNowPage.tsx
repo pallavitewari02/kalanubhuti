@@ -89,17 +89,20 @@ export function BuyNowPage() {
                 <WhatsAppIcon />
               </span>
             </span>
-            <input
-              name="mobile"
-              type="tel"
-              required
-              inputMode="numeric"
-              autoComplete="tel"
-              pattern="[0-9]{10}"
-              title="Enter a 10 digit mobile number"
-              value={form.mobile}
-              onChange={(event) => setForm((current) => ({ ...current, mobile: event.target.value }))}
-            />
+            <span className="mobile-input">
+              <span className="mobile-prefix">+91</span>
+              <input
+                name="mobile"
+                type="tel"
+                required
+                inputMode="numeric"
+                autoComplete="tel"
+                pattern="[0-9]{10}"
+                title="Enter a 10 digit mobile number"
+                value={form.mobile}
+                onChange={(event) => setForm((current) => ({ ...current, mobile: event.target.value }))}
+              />
+            </span>
           </label>
 
           <label className="order-field">

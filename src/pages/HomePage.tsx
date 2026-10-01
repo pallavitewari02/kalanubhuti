@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Facebook, Instagram, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArtworkPopup } from '../components/ArtworkPopup';
 import { ZoomPhoto } from '../components/ZoomPhoto';
 import { ExhibitionSlider } from '../components/ExhibitionSlider';
@@ -16,7 +16,6 @@ const images = {
 };
 
 export function HomePage() {
-  const location = useLocation();
   const slides = gallerySlides();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [openProduct, setOpenProduct] = useState<{ name: string; image: string } | null>(null);
@@ -48,11 +47,6 @@ export function HomePage() {
     return () => window.removeEventListener('keydown', onKey);
   }, [openProduct, openSlide]);
 
-  useEffect(() => {
-    const section = location.pathname === '/gallery' ? 'gallery' : location.pathname === '/shop' ? 'shop' : '';
-    if (!section) return;
-    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [location.pathname]);
 
   return (
     <main>
@@ -159,7 +153,7 @@ export function HomePage() {
         <img src={images.brushes} alt="Custom orders studio table with folk painting, pigments, and brushes" />
       </section>
 
-      <section className="paper-section lower-section">
+      <section className="paper-section lower-section" id="blog">
         <div className="blog-column">
           <OrnamentalHeading>From the Blog</OrnamentalHeading>
           <div className="blog-grid">
@@ -194,11 +188,11 @@ export function HomePage() {
         </div>
       </section>
       {openProduct && (
-        <div className="exhibition-lightbox" role="dialog" aria-modal="true" aria-label={openProduct.name}>
+        <div className="exhibition-lightbox shop-lightbox" role="dialog" aria-modal="true" aria-label={openProduct.name}>
           <button className="exhibition-close" type="button" aria-label="Close" onClick={() => setOpenProduct(null)}>
             <X size={22} />
           </button>
-          <ZoomPhoto src={openProduct.image} alt={openProduct.name} />
+          <ZoomPhoto src={openProduct.image} alt={openProduct.name} controlsBelow />
         </div>
       )}
       {openSlide && (

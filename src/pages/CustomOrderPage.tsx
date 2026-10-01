@@ -3,11 +3,30 @@ import { useNavigate } from 'react-router-dom';
 import { BackHome } from '../components/BackHome';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { paintingTypes } from '../data/customOrder';
-import { subcategoriesForType } from '../data/gallery';
+import { gallery } from '../data/gallery';
 import { submitWeb3Form } from '../lib/web3forms';
 
 const paperType = 'Paper Painting';
-const initialType = paintingTypes.some((type) => type.name === paperType) ? paperType : (paintingTypes[0]?.name ?? '');
+const artFormNames: Record<string, string[]> = {
+  'Canvas Painting': ['Gond', 'Lippan', 'Madhubani', 'Modern Contemporary', 'Pichwai'],
+  'MDF Board Painting': ['Gond', 'Lippan', 'Madhubani', 'Modern Contemporary', 'Pichwai'],
+  'Paper Painting': ['Gond', 'Madhubani', 'Modern Contemporary', 'Pichwai'],
+};
+
+function artFormsForType(typeName: string) {
+  const wanted = new Set(artFormNames[typeName] ?? []);
+  const forms: { id: string; name: string }[] = [];
+  gallery.forEach((category) => {
+    const items = category.children?.length ? category.children : [category];
+    items.forEach((item) => {
+      if (wanted.has(item.name) && item.image) forms.push({ id: item.id, name: item.name });
+    });
+  });
+  return forms.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+const sortedPaintingTypes = [...paintingTypes].sort((a, b) => a.name.localeCompare(b.name));
+const initialType = sortedPaintingTypes.some((type) => type.name === paperType) ? paperType : (sortedPaintingTypes[0]?.name ?? '');
 const circleSizes = ['14', '16', '18', '22'];
 const shapedTypes = new Set(['MDF Board Painting', 'Canvas Painting']);
 
@@ -16,7 +35,7 @@ export function CustomOrderPage() {
   const [form, setForm] = useState({
     name: '',
     paintingType: initialType,
-    subcategory: subcategoriesForType(initialType)[0]?.id ?? '',
+    subcategory: artFormsForType(initialType)[0]?.id ?? '',
     mobile: '',
     email: '',
     shape: 'Square/rectangle',
@@ -29,7 +48,7 @@ export function CustomOrderPage() {
   const [error, setError] = useState('');
   const [sending, setSending] = useState(false);
 
-  const artForms = subcategoriesForType(form.paintingType).filter((item) => item.image);
+  const artForms = artFormsForType(form.paintingType);
   const offersShape = shapedTypes.has(form.paintingType);
   const isCircle = offersShape && form.shape === 'Circle';
 
@@ -39,7 +58,7 @@ export function CustomOrderPage() {
 
   const onPaintingType = (event: { target: { value: string } }) => {
     const paintingType = event.target.value;
-    const matches = subcategoriesForType(paintingType).filter((item) => item.image);
+    const matches = artFormsForType(paintingType);
     setForm((current) => ({
       ...current,
       paintingType,
@@ -88,7 +107,7 @@ export function CustomOrderPage() {
         <label className="order-field">
           <span>Type of painting *</span>
           <select name="paintingType" required value={form.paintingType} onChange={onPaintingType}>
-            {paintingTypes.map((type) => (
+            {sortedPaintingTypes.map((type) => (
               <option key={type.id} value={type.name}>
                 {type.name}
               </option>

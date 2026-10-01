@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { findBlogPost } from '../data/blog';
 
@@ -18,6 +18,9 @@ export function BlogPostPage() {
         {post.paragraphs.map((paragraph) => (
           <p key={paragraph.slice(0, 24)}>{paragraph}</p>
         ))}
+        <Link className="brick-button gallery-button" to="/" state={{ section: 'blog' }}>
+          Back to Blog
+        </Link>
       </article>
     </main>
   );

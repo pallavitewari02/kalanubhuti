@@ -1,12 +1,25 @@
-import { useEffect, useLayoutEffect } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useEffect, useLayoutEffect, useRef } from 'react';
+import { Link, Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import { artFormPath, categoryPath, gallery } from '../data/gallery';
 import { rememberScroll, restoreScroll } from './BackHome';
 
 export function Layout() {
   const location = useLocation();
+  const navigationType = useNavigationType();
+  const previousPath = useRef(location.pathname);
   useEffect(() => rememberScroll(location.key), [location.key]);
-  useLayoutEffect(() => restoreScroll(location.key), [location.key]);
+  useLayoutEffect(() => {
+    const fromBlog = navigationType === 'POP' && previousPath.current.startsWith('/blog') && location.pathname === '/';
+    const toBlog = (location.state as { section?: string } | null)?.section === 'blog';
+    previousPath.current = location.pathname;
+    const section =
+      location.pathname === '/gallery' ? 'gallery' : location.pathname === '/shop' ? 'shop' : toBlog || fromBlog ? 'blog' : '';
+    if (section) {
+      document.getElementById(section)?.scrollIntoView({ block: 'start' });
+      return;
+    }
+    restoreScroll(location.key);
+  }, [location, navigationType]);
   return (
     <div className="kala-site">
       <div className="top-border" />
