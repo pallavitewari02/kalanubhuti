@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes, useParams } from 'react-router-dom';
-import { artFormPathById, categoryPathById, findArtForm, findCategoryPainting } from './data/gallery';
+import { artFormPathById, findArtForm, findCategoryPainting } from './data/gallery';
 import { Layout } from './components/Layout';
 import { AboutPage } from './pages/AboutPage';
 import { ArtFormPage } from './pages/ArtFormPage';
@@ -13,8 +13,7 @@ import { PaintingPage } from './pages/PaintingPage';
 import { ThankYouPage } from './pages/ThankYouPage';
 
 function CategoryRedirect() {
-  const { id } = useParams();
-  return <Navigate to={id ? categoryPathById(id) : '/'} replace />;
+  return <Navigate to="/gallery" replace />;
 }
 
 function ArtFormRedirect() {

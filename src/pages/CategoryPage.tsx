@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { ArtworkPopup } from '../components/ArtworkPopup';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
-import { artFormPath, findCategoryBySlug, paintingPath } from '../data/gallery';
+import { artFormPath, findCategoryBySlug, type GallerySlide } from '../data/gallery';
 
 export function CategoryPage() {
   const { categorySlug } = useParams();
   const category = categorySlug ? findCategoryBySlug(categorySlug) : undefined;
   const children = category && 'children' in category ? category.children?.filter((child) => child.image) : undefined;
   const paintings = category && 'products' in category ? category.products : undefined;
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   if (!category) {
     return (
@@ -19,6 +22,19 @@ export function CategoryPage() {
       </main>
     );
   }
+
+  const slides: GallerySlide[] = (paintings ?? [])
+    .filter((product) => product.image)
+    .map((product) => ({
+      name: product.name,
+      image: product.image,
+      artForm: category.name,
+      detail: category.detail ?? '',
+      paintingType: product.paintingType ?? '',
+      price: product.price,
+      size: product.size,
+    }));
+  const openSlide = openIndex === null ? null : slides[openIndex];
 
   return (
     <main className="paper-section art-form-page">
@@ -37,19 +53,27 @@ export function CategoryPage() {
           ))}
         </div>
       )}
-      {paintings && paintings.length > 0 && (
+      {slides.length > 0 && (
         <div className="art-form-grid">
-          {paintings.map((painting) => (
-            <Link className="gallery-card" key={painting.image} to={paintingPath(category, painting)}>
-              <img src={painting.image} alt={painting.name} />
-              <h3>{painting.name}</h3>
-            </Link>
+          {slides.map((slide, index) => (
+            <button className="gallery-card" key={slide.image} type="button" onClick={() => setOpenIndex(index)}>
+              <img src={slide.image} alt={slide.name} />
+              <h3>{slide.name}</h3>
+            </button>
           ))}
         </div>
       )}
       <Link className="brick-button gallery-button" to="/gallery">
         Back to Gallery
       </Link>
+      {openSlide && (
+        <ArtworkPopup
+          slide={openSlide}
+          onClose={() => setOpenIndex(null)}
+          onPrev={() => setOpenIndex((current) => (current === null ? 0 : (current - 1 + slides.length) % slides.length))}
+          onNext={() => setOpenIndex((current) => (current === null ? 0 : (current + 1) % slides.length))}
+        />
+      )}
     </main>
   );
 }

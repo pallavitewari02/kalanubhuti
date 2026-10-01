@@ -169,6 +169,7 @@
             "name": "Sri Nath ji",
             "image": "/Art%20pics/Indian%20Folk%20Art/Pichwai/Sri%20Nath%20ji.jpeg",
             "price": "₹3,000",
+            "featured": true,
             "slug": "SriNathji",
             "paintingType": "Canvas",
             "size": "22 x 30 inches"
@@ -238,9 +239,11 @@
         "name": "Shiv Parivar",
         "image": "/Art%20pics/Modern%20Contemporary/Shiv%20Parivar.jpg",
         "price": "₹3,500",
+        "featured": true,
         "slug": "ShivParivar",
         "paintingType": "Paper",
         "size": "18 x 24 inches"
+    
       },
       {
         "name": "Lord Hanuman",

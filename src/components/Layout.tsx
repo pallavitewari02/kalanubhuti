@@ -1,7 +1,12 @@
-import { Link, Outlet } from 'react-router-dom';
+import { useEffect, useLayoutEffect } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { artFormPath, categoryPath, gallery } from '../data/gallery';
+import { rememberScroll, restoreScroll } from './BackHome';
 
 export function Layout() {
+  const location = useLocation();
+  useEffect(() => rememberScroll(location.key), [location.key]);
+  useLayoutEffect(() => restoreScroll(location.key), [location.key]);
   return (
     <div className="kala-site">
       <div className="top-border" />
@@ -34,7 +39,7 @@ export function Layout() {
           </div>
           <Link to="/shop">Shop</Link>
           <Link to="/custom-order">Custom Order</Link>
-          <Link to="/contact">Contact Us</Link>
+          <Link to="/contact">Get in Touch</Link>
         </nav>
         <span className="header-spacer" aria-hidden="true" />
       </header>

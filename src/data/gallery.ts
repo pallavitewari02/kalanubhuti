@@ -40,7 +40,9 @@ export const products: Product[] = gallery.flatMap((category) => {
   const featuredChildren = (category.children ?? []).flatMap((child) =>
     child.products.filter((product) => product.featured),
   );
-  if (!category.children?.length && category.featured && category.price) {
+  const featuredDirect = (category.products ?? []).filter((product) => product.featured);
+  featuredChildren.push(...featuredDirect);
+  if (!category.children?.length && featuredDirect.length === 0 && category.featured && category.price) {
     featuredChildren.push({
       name: category.name,
       slug: category.slug,

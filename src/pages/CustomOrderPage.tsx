@@ -108,30 +108,6 @@ export function CustomOrderPage() {
           </select>
         </label>
 
-        <label className="order-field">
-            <span>Mobile number *</span>
-            <span className="mobile-input">
-              <span className="mobile-prefix">+91</span>
-              <input
-                name="mobile"
-                type="tel"
-                required
-                inputMode="numeric"
-                autoComplete="tel"
-                pattern="[0-9]{10}"
-                title="Enter a 10 digit mobile number"
-                value={form.mobile}
-                onChange={update('mobile')}
-              />
-            </span>
-            <small>We will reach out via WhatsApp or phone call</small>
-          </label>
-
-        <label className="order-field">
-          <span>Email ID *</span>
-          <input name="email" type="email" required autoComplete="email" value={form.email} onChange={update('email')} />
-        </label>
-
         {offersShape && (
           <label className="order-field">
             <span>Shape *</span>
@@ -155,14 +131,14 @@ export function CustomOrderPage() {
           </label>
         )}
 
+        {isCircle ? null : (
         <div className="order-row">
           <label className="order-field">
             <span>Length (inches) *</span>
             <input
               name="length"
               type="number"
-              required={!isCircle}
-              disabled={isCircle}
+              required
               min="1"
               step="0.1"
               value={form.length}
@@ -174,8 +150,7 @@ export function CustomOrderPage() {
             <input
               name="breadth"
               type="number"
-              required={!isCircle}
-              disabled={isCircle}
+              required
               min="1"
               step="0.1"
               value={form.breadth}
@@ -183,6 +158,31 @@ export function CustomOrderPage() {
             />
           </label>
         </div>
+        )}
+
+        <label className="order-field">
+          <span>Mobile number *</span>
+          <span className="mobile-input">
+            <span className="mobile-prefix">+91</span>
+            <input
+              name="mobile"
+              type="tel"
+              required
+              inputMode="numeric"
+              autoComplete="tel"
+              pattern="[0-9]{10}"
+              title="Enter a 10 digit mobile number"
+              value={form.mobile}
+              onChange={update('mobile')}
+            />
+          </span>
+          <small>We will reach out via WhatsApp or phone call</small>
+        </label>
+
+        <label className="order-field">
+          <span>Email ID *</span>
+          <input name="email" type="email" required autoComplete="email" value={form.email} onChange={update('email')} />
+        </label>
 
         <div className="order-row">
           <label className="order-field">
@@ -213,7 +213,7 @@ export function CustomOrderPage() {
         </div>
 
         <p className="order-note">
-          Delivery charges may apply and vary based on the size of painting and delivery location.
+          Delivery charges applies and vary based on the size of painting and delivery location.
         </p>
 
         {error && <p className="order-note">{error}</p>}

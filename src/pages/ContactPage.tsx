@@ -37,7 +37,7 @@ export function ContactPage() {
 
   return (
     <main className="paper-section order-page">
-      <OrnamentalHeading>Contact us</OrnamentalHeading>
+      <OrnamentalHeading>Get in Touch</OrnamentalHeading>
       <form className="order-form custom-order-form" onSubmit={onSubmit}>
         <label className="order-field">
           <span>Name *</span>

@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Facebook, Instagram, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { ArtworkPopup } from '../components/ArtworkPopup';
 import { ZoomPhoto } from '../components/ZoomPhoto';
 import { ExhibitionSlider } from '../components/ExhibitionSlider';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
@@ -21,6 +22,12 @@ export function HomePage() {
   const [openProduct, setOpenProduct] = useState<{ name: string; image: string } | null>(null);
   const [paused, setPaused] = useState(false);
   const openSlide = openIndex === null ? null : slides[openIndex];
+  const featuredRow = useRef<HTMLDivElement>(null);
+  const scrollFeatured = (direction: number) => {
+    const row = featuredRow.current;
+    if (!row) return;
+    row.scrollBy({ left: direction * row.clientWidth, behavior: 'smooth' });
+  };
 
   const stepSlide = (direction: number) => {
     setOpenIndex((current) => {
@@ -104,7 +111,8 @@ export function HomePage() {
       <section className="shop-strip" id="shop">
         <div className="shop-inner">
           <OrnamentalHeading>Shop: Featured Products</OrnamentalHeading>
-          <div className="product-grid">
+          <div className="featured-row">
+            <div className="product-grid" ref={featuredRow}>
             {products.map((product, index) => (
               <article className="product-card" key={`${product.name}-${index}`}>
                 <button
@@ -124,6 +132,13 @@ export function HomePage() {
                 </Link>
               </article>
             ))}
+            </div>
+            <button className="featured-prev" type="button" aria-label="Previous featured products" onClick={() => scrollFeatured(-1)}>
+              <ChevronLeft size={28} />
+            </button>
+            <button className="featured-next" type="button" aria-label="More featured products" onClick={() => scrollFeatured(1)}>
+              <ChevronRight size={28} />
+            </button>
           </div>
         </div>
       </section>
@@ -162,11 +177,11 @@ export function HomePage() {
 
       <section className="paper-section contact-section" id="contact">
         <OrnamentalHeading>
-          <Link to="/contact">Contact us</Link>
+          <Link to="/contact">Get in Touch</Link>
         </OrnamentalHeading>
         <p className="contact-invite">Have a question about a painting or a custom piece? Write to us.</p>
         <Link to="/contact" className="brick-button">
-          Contact us
+          Get in Touch
         </Link>
         <h3>Follow Me</h3>
         <div className="social-links">
@@ -187,47 +202,12 @@ export function HomePage() {
         </div>
       )}
       {openSlide && (
-        <div className="exhibition-lightbox" role="dialog" aria-modal="true" aria-label={openSlide.name}>
-          <button className="exhibition-close" type="button" aria-label="Close" onClick={() => setOpenIndex(null)}>
-            <X size={22} />
-          </button>
-          <button className="exhibition-nav exhibition-prev" type="button" aria-label="Previous photo" onClick={() => stepSlide(-1)}>
-            <ChevronLeft size={28} />
-          </button>
-          <div className="artwork-popup">
-            <div className="artwork-popup-main">
-              <ZoomPhoto src={openSlide.image} alt={openSlide.name} controlsBelow />
-            </div>
-            <aside className="artwork-summary">
-              <h2>{openSlide.name}</h2>
-              <div className="artwork-row">
-                <span>Art Form:</span>
-                <strong>{openSlide.artForm}</strong>
-              </div>
-              <div className="artwork-row">
-                <span>Painting Type</span>
-                <strong>{openSlide.paintingType}</strong>
-              </div>
-              <div className="artwork-row">
-                <span>Size:</span>
-                <strong>{openSlide.size}</strong>
-              </div>
-              <div className="artwork-row artwork-price">
-                <span>Price:</span>
-                <strong>{openSlide.price}</strong>
-              </div>
-              <Link
-                className="artwork-buy"
-                to={`/buy-now?product=${encodeURIComponent(openSlide.name)}&image=${encodeURIComponent(openSlide.image)}`}
-              >
-                Buy now
-              </Link>
-            </aside>
-          </div>
-          <button className="exhibition-nav exhibition-next" type="button" aria-label="Next photo" onClick={() => stepSlide(1)}>
-            <ChevronRight size={28} />
-          </button>
-        </div>
+        <ArtworkPopup
+          slide={openSlide}
+          onClose={() => setOpenIndex(null)}
+          onPrev={() => stepSlide(-1)}
+          onNext={() => stepSlide(1)}
+        />
       )}
     </main>
   );
