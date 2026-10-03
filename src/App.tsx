@@ -8,6 +8,7 @@ import { BuyNowPage } from './pages/BuyNowPage';
 import { CategoryPage } from './pages/CategoryPage';
 import { ContactPage } from './pages/ContactPage';
 import { CustomOrderPage } from './pages/CustomOrderPage';
+import { GalleryPage } from './pages/GalleryPage';
 import { HomePage } from './pages/HomePage';
 import { PaintingPage } from './pages/PaintingPage';
 import { ThankYouPage } from './pages/ThankYouPage';
@@ -34,7 +35,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/gallery" element={<HomePage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/shop" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />

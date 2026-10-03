@@ -10,12 +10,21 @@ export function Layout() {
   useEffect(() => rememberScroll(location.key), [location.key]);
   useLayoutEffect(() => {
     const fromBlog = navigationType === 'POP' && previousPath.current.startsWith('/blog') && location.pathname === '/';
-    const toBlog = (location.state as { section?: string } | null)?.section === 'blog';
+    const sectionState = (location.state as { section?: string } | null)?.section;
+    const toBlog = sectionState === 'blog';
+    const toAbout = sectionState === 'about';
     previousPath.current = location.pathname;
-    const section =
-      location.pathname === '/gallery' ? 'gallery' : location.pathname === '/shop' ? 'shop' : toBlog || fromBlog ? 'blog' : '';
+    if (location.pathname.startsWith('/blog/')) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    const section = location.pathname === '/shop' ? 'shop' : toBlog || fromBlog ? 'blog' : toAbout ? 'about' : '';
     if (section) {
       document.getElementById(section)?.scrollIntoView({ block: 'start' });
+      return;
+    }
+    if (location.pathname === '/gallery') {
+      window.scrollTo(0, 0);
       return;
     }
     restoreScroll(location.key);

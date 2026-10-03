@@ -52,6 +52,10 @@ export function BuyNowPage() {
   return (
     <main className="paper-section order-page">
       <OrnamentalHeading>Buy now</OrnamentalHeading>
+      <p className="buy-now-note">
+        You’re just one step away from owning something truly special! You will be contacted within 24 hours of placing order.
+      </p>
+      <div className="buy-layout">
       <div className="buy-preview">
         {image && <img src={image} alt={product} />}
         <p className="order-product">{product}</p>
@@ -141,6 +145,7 @@ export function BuyNowPage() {
             Submit
           </button>
         </form>
+      </div>
 
       <Link className="brick-button gallery-button" to="/shop">
         Back to Shop

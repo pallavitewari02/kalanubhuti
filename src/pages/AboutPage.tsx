@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom';
 import { formatAboutParagraph } from '../components/AboutCopy';
-import { BackHome } from '../components/BackHome';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { aboutImage, aboutParagraphs } from '../data/about';
 
@@ -16,7 +16,9 @@ export function AboutPage() {
         </div>
       </div>
 
-      <BackHome className="brick-button gallery-button">Back to Home</BackHome>
+      <Link className="brick-button gallery-button" to="/" state={{ section: 'about' }}>
+        Back to Home
+      </Link>
     </main>
   );
 }

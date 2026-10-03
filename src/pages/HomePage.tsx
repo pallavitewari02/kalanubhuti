@@ -20,13 +20,51 @@ export function HomePage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [openProduct, setOpenProduct] = useState<{ name: string; image: string } | null>(null);
   const [paused, setPaused] = useState(false);
+  const [galleryShift, setGalleryShift] = useState(0);
+  const [shopAtStart, setShopAtStart] = useState(true);
+  const [shopAtEnd, setShopAtEnd] = useState(false);
   const openSlide = openIndex === null ? null : slides[openIndex];
   const featuredRow = useRef<HTMLDivElement>(null);
+  const updateShopEnds = () => {
+    const row = featuredRow.current;
+    if (!row) return;
+    const first = row.firstElementChild;
+    const last = row.lastElementChild;
+    if (!first || !last) return;
+    const rowRect = row.getBoundingClientRect();
+    const firstRect = first.getBoundingClientRect();
+    const lastRect = last.getBoundingClientRect();
+    setShopAtStart(firstRect.left >= rowRect.left - 4);
+    setShopAtEnd(lastRect.right <= rowRect.right + 4);
+  };
   const scrollFeatured = (direction: number) => {
     const row = featuredRow.current;
     if (!row) return;
     row.scrollBy({ left: direction * row.clientWidth, behavior: 'smooth' });
   };
+  const nudgeGallery = (direction: number) => {
+    const step = 258;
+    const span = Math.max(slides.length, 1) * step;
+    setPaused(true);
+    setGalleryShift((current) => {
+      let next = current + direction * -step;
+      if (next <= -span) next += span;
+      if (next > 0) next -= span;
+      return next;
+    });
+    window.setTimeout(() => setPaused(false), 700);
+  };
+
+  useEffect(() => {
+    updateShopEnds();
+    const row = featuredRow.current;
+    row?.addEventListener('scroll', updateShopEnds, { passive: true });
+    window.addEventListener('resize', updateShopEnds);
+    return () => {
+      row?.removeEventListener('scroll', updateShopEnds);
+      window.removeEventListener('resize', updateShopEnds);
+    };
+  }, []);
 
   const stepSlide = (direction: number) => {
     setOpenIndex((current) => {
@@ -81,11 +119,16 @@ export function HomePage() {
 
       <section className="paper-section gallery-section" id="gallery">
         <OrnamentalHeading>My gallery</OrnamentalHeading>
+        <div className="studio-marquee-wrap">
+        <button className="studio-arrow studio-arrow-left" type="button" aria-label="Previous gallery images" onClick={() => nudgeGallery(-1)}>
+          <ChevronLeft size={28} />
+        </button>
         <div
           className={`studio-marquee${paused || openSlide ? ' is-paused' : ''}`}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
+          <div className="studio-shift" style={{ transform: `translateX(${galleryShift}px)` }}>
           <div className="studio-track">
             {[...slides, ...slides].map((slide, index) => (
               <button
@@ -99,6 +142,11 @@ export function HomePage() {
               </button>
             ))}
           </div>
+          </div>
+        </div>
+        <button className="studio-arrow studio-arrow-right" type="button" aria-label="Next gallery images" onClick={() => nudgeGallery(1)}>
+          <ChevronRight size={28} />
+        </button>
         </div>
       </section>
 
@@ -127,10 +175,10 @@ export function HomePage() {
               </article>
             ))}
             </div>
-            <button className="featured-prev" type="button" aria-label="Previous featured products" onClick={() => scrollFeatured(-1)}>
+            <button className="featured-prev" type="button" aria-label="Previous featured products" hidden={shopAtStart} onClick={() => scrollFeatured(-1)}>
               <ChevronLeft size={28} />
             </button>
-            <button className="featured-next" type="button" aria-label="More featured products" onClick={() => scrollFeatured(1)}>
+            <button className="featured-next" type="button" aria-label="More featured products" disabled={shopAtEnd} onClick={() => scrollFeatured(1)}>
               <ChevronRight size={28} />
             </button>
           </div>
