@@ -30,6 +30,14 @@
             "slug": "LordGanesha",
             "paintingType": "Paper",
             "size": "22 x 15 inches"
+          },
+          {
+            "name": "Ram Darbar",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Madhubani/Ram%20Darbar.jpg",
+            "price": "\u20b95,000",
+            "slug": "RamDarbar",
+            "paintingType": "Canvas",
+            "size": "30 x 24 inches"
           }
         ],
         "slug": "Madhubani",
@@ -139,6 +147,22 @@
             "slug": "RangoliSquareGreen",
             "paintingType": "MDF Board",
             "size": "12 x 12 inches"
+          },
+          {
+            "name": "Lord Ganesh Trunk",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Lord%20Ganesh%20Trunk.jpg",
+            "price": "\u20b9800",
+            "slug": "LordGaneshTrunk",
+            "paintingType": "MDF Board",
+            "size": "20 x 6 inches"
+          },
+          {
+            "name": "Om Blue",
+            "image": "/Art%20pics/Indian%20Folk%20Art/Lippan/Om%20Blue.jpg",
+            "price": "\u20b94,500",
+            "slug": "OmBlue",
+            "paintingType": "MDF Board",
+            "size": "24 inches"
           }
         ],
         "slug": "Lippan",

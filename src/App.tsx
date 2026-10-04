@@ -7,6 +7,7 @@ import { BlogPostPage } from './pages/BlogPostPage';
 import { BuyNowPage } from './pages/BuyNowPage';
 import { CategoryPage } from './pages/CategoryPage';
 import { ContactPage } from './pages/ContactPage';
+import { DataPrivacyPage } from './pages/DataPrivacyPage';
 import { CustomOrderPage } from './pages/CustomOrderPage';
 import { GalleryPage } from './pages/GalleryPage';
 import { HomePage } from './pages/HomePage';
@@ -31,7 +32,7 @@ function GalleryTwoSegment() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
@@ -42,6 +43,7 @@ function App() {
           <Route path="/buy-now" element={<BuyNowPage />} />
           <Route path="/custom-order" element={<CustomOrderPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/data-privacy" element={<DataPrivacyPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
           <Route path="/art/:slug" element={<ArtFormRedirect />} />
           <Route path="/category/:id" element={<CategoryRedirect />} />

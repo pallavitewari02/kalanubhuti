@@ -66,7 +66,10 @@ export function Layout() {
         <span className="header-spacer" aria-hidden="true" />
       </header>
       <Outlet />
-      <footer className="kala-footer">© 2026 Kalanubhuti · Handmade with love and heritage</footer>
+      <footer className="kala-footer">
+        © 2026 Kalanubhuti · Handmade with love and heritage
+        <Link to="/data-privacy">Data Privacy & Protection</Link>
+      </footer>
     </div>
   );
 }

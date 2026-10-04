@@ -58,6 +58,14 @@ export function GalleryPage() {
         while staying handmade, so each piece can sit in a current home without losing the warmth of the
         studio.
       </p>
+      <div className="gallery-landing-grid">
+        {categories.map((category) => (
+          <Link className="gallery-card" key={category.id} to={categoryPath(category)}>
+            <img src={categoryImages[category.name]} alt={category.name} />
+            <h3>{category.name}</h3>
+          </Link>
+        ))}
+      </div>
       <div className="studio-marquee-wrap gallery-page-slider">
         <button className="studio-arrow studio-arrow-left" type="button" aria-label="Previous gallery images" onClick={() => nudgeGallery(-1)}>
           <ChevronLeft size={28} />
@@ -86,14 +94,6 @@ export function GalleryPage() {
         <button className="studio-arrow studio-arrow-right" type="button" aria-label="Next gallery images" onClick={() => nudgeGallery(1)}>
           <ChevronRight size={28} />
         </button>
-      </div>
-      <div className="gallery-landing-grid">
-        {categories.map((category) => (
-          <Link className="gallery-card" key={category.id} to={categoryPath(category)}>
-            <img src={categoryImages[category.name]} alt={category.name} />
-            <h3>{category.name}</h3>
-          </Link>
-        ))}
       </div>
       {openSlide && (
         <ArtworkPopup
