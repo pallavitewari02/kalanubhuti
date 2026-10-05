@@ -5,7 +5,6 @@ export function DataPrivacyPage() {
     <main className="paper-section">
       <OrnamentalHeading>Data Privacy & Protection</OrnamentalHeading>
       <article className="blog-post privacy-page">
-        <h2>Data Privacy & Data Protection</h2>
         <p>
           At Kalanubhuti, we value your trust and are committed to safeguarding your personal information.
           This page outlines how we collect, use, and protect your data when you interact with our website
