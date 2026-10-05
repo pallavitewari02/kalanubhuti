@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { submitWeb3Form } from '../lib/web3forms';
 
@@ -61,7 +61,7 @@ export function BuyNowPage() {
         <p className="order-product">{product}</p>
       </div>
 
-      <form className="order-form" onSubmit={onSubmit}>
+      <form id="buy-now-form" className="order-form" onSubmit={onSubmit}>
           <label className="order-field">
             <span>Name*</span>
             <input
@@ -141,15 +141,12 @@ export function BuyNowPage() {
           </p>
 
           {error && <p className="order-note">{error}</p>}
-          <button type="submit" className="brick-button" disabled={sending}>
-            Submit
-          </button>
         </form>
       </div>
 
-      <Link className="brick-button gallery-button" to="/shop">
-        Back to Shop
-      </Link>
+      <button type="submit" form="buy-now-form" className="brick-button gallery-button" disabled={sending}>
+        Submit
+      </button>
     </main>
   );
 }

@@ -10,6 +10,7 @@ export function Layout() {
   useEffect(() => rememberScroll(location.key), [location.key]);
   useLayoutEffect(() => {
     const fromBlog = navigationType === 'POP' && previousPath.current.startsWith('/blog') && location.pathname === '/';
+    const fromCustomOrder = navigationType === 'POP' && previousPath.current === '/custom-order' && location.pathname === '/';
     const sectionState = (location.state as { section?: string } | null)?.section;
     const toBlog = sectionState === 'blog';
     const toAbout = sectionState === 'about';
@@ -18,12 +19,12 @@ export function Layout() {
       window.scrollTo(0, 0);
       return;
     }
-    const section = location.pathname === '/shop' ? 'shop' : toBlog || fromBlog ? 'blog' : toAbout ? 'about' : '';
+    const section = location.pathname === '/shop' ? 'shop' : toBlog || fromBlog ? 'blog' : toAbout ? 'about' : fromCustomOrder ? 'custom-order' : '';
     if (section) {
       document.getElementById(section)?.scrollIntoView({ block: 'start' });
       return;
     }
-    if (location.pathname === '/gallery') {
+    if (location.pathname === '/gallery' || location.pathname === '/buy-now') {
       window.scrollTo(0, 0);
       return;
     }

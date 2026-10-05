@@ -1,6 +1,5 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BackHome } from '../components/BackHome';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { paintingTypes } from '../data/customOrder';
 import { gallery } from '../data/gallery';
@@ -98,6 +97,9 @@ export function CustomOrderPage() {
   return (
     <main className="paper-section order-page">
       <OrnamentalHeading>Custom Order details</OrnamentalHeading>
+      <p className="buy-now-note">
+        You’re just one step away from owning something truly special! You will be contacted within 24 hours of placing order.
+      </p>
       <form className="order-form custom-order-form" onSubmit={onSubmit}>
         <label className="order-field">
           <span>Name *</span>
@@ -240,8 +242,6 @@ export function CustomOrderPage() {
           Submit
         </button>
       </form>
-
-      <BackHome className="brick-button gallery-button">Back to Home</BackHome>
     </main>
   );
 }
