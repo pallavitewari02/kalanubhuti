@@ -1,3 +1,5 @@
+import { publicUrl } from '../lib/publicUrl';
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -12,7 +14,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'art-of-madhubani',
     title: 'The Art of Madhubani',
-    image: '/blog/madhubani.jpg',
+    image: publicUrl('/blog/madhubani.jpg'),
     imageAlt: 'Madhubani folk painting',
     intro:
       'At Kalanubhuti, every brushstroke tells a story — a story of heritage reborn through modern eyes. Our philosophy, “Handmade Tradition, Modern Expression,” celebrates the timeless beauty of Indian art forms while embracing today’s creative spirit. Among these treasures, Madhubani art stands as a radiant example — a tradition that transforms ordinary moments into extraordinary expressions of culture, devotion, and imagination.',
@@ -28,7 +30,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'magic-of-meenakari',
     title: 'The Magic of Meenakari',
-    image: '/blog/meenakari.jpg',
+    image: publicUrl('/blog/meenakari.jpg'),
     imageAlt: 'Meenakari enamel on metal',
     intro:
       'At Kalanubhuti, every creation is a dialogue between tradition and innovation. Our philosophy, “Handmade Tradition, Modern Expression,” celebrates India’s timeless artistry while embracing the creativity of today’s world. Among these radiant crafts, Meenakari art shines like a jewel — literally and metaphorically — weaving metal, color, and imagination into one mesmerizing form.',
@@ -44,7 +46,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'lippan-art',
     title: 'Lippan Art',
-    image: '/blog/lippan.jpg',
+    image: publicUrl('/blog/lippan.jpg'),
     imageAlt: 'Lippan mud and mirror art',
     intro:
       'At Kalanubhuti, we believe that tradition is not just preserved — it is re imagined. Our motto, “Handmade Tradition, Modern Expression,” reflects how India’s timeless crafts continue to inspire contemporary creativity. Among these treasures, Lippan art stands out as a radiant example of how earth, mirror, and imagination come together to create living walls of beauty.',

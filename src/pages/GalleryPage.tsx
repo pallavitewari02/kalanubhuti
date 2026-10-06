@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { ArtworkPopup } from '../components/ArtworkPopup';
 import { OrnamentalHeading } from '../components/OrnamentalHeading';
 import { categoryPath, gallery, gallerySlides } from '../data/gallery';
+import { publicUrl } from '../lib/publicUrl';
 
 const categoryImages: Record<string, string> = {
-  'Indian Folk Art': '/Art%20pics/Indian%20Folk%20Art/Lippan/Lippan-Jagganathji.jpeg',
-  'Modern Contemporary': '/Art%20pics/Modern%20Contemporary/Bihar%20Cultural%20theme.jpg',
+  'Indian Folk Art': publicUrl('/Art%20pics/Indian%20Folk%20Art/Lippan/Lippan-Jagganathji.jpeg'),
+  'Modern Contemporary': publicUrl('/Art%20pics/Modern%20Contemporary/Bihar%20Cultural%20theme.jpg'),
 };
 
 export function GalleryPage() {

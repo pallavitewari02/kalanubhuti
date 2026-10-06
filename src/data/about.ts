@@ -1,4 +1,6 @@
-export const aboutImage = '/neha.jpg';
+import { publicUrl } from '../lib/publicUrl';
+
+export const aboutImage = publicUrl('/neha.jpg');
 
 export const aboutParagraphs = [
   'I’m Neha, founder and owner of Kalanubhuti. The word Kalanubhuti comes from Sanskrit, combining Kala (art) and Anubhuti (experience), symbolizing art that touches the soul.',

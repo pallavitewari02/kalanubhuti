@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import { Link, Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import { artFormPath, categoryPath, gallery } from '../data/gallery';
 import { rememberScroll, restoreScroll } from './BackHome';
+import { publicUrl } from '../lib/publicUrl';
 
 export function Layout() {
   const location = useLocation();
@@ -35,7 +36,7 @@ export function Layout() {
       <div className="top-border" />
       <header className="kala-header">
         <Link className="kala-brand" to="/">
-          <img className="brand-logo" src="/logo.jpg" alt="" />
+          <img className="brand-logo" src={publicUrl('/logo.jpg')} alt="" />
           <span>Kalanubhuti</span>
         </Link>
         <nav className="kala-nav" aria-label="Main navigation">

@@ -1,4 +1,5 @@
 import data from './data.json';
+import { publicUrl } from '../lib/publicUrl';
 
 export type Product = {
   name: string;
@@ -34,7 +35,16 @@ export type Category = {
   products?: Product[];
 };
 
-export const gallery: Category[] = data;
+export const gallery: Category[] = data.map((category) => ({
+  ...category,
+  image: publicUrl(category.image),
+  children: category.children?.map((child) => ({
+    ...child,
+    image: publicUrl(child.image),
+    products: child.products.map((product) => ({ ...product, image: publicUrl(product.image) })),
+  })),
+  products: category.products?.map((product) => ({ ...product, image: publicUrl(product.image) })),
+}));
 
 export const products: Product[] = gallery.flatMap((category) => {
   const featuredChildren = (category.children ?? []).flatMap((child) =>

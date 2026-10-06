@@ -9,10 +9,11 @@ import { formatAboutParagraph } from '../components/AboutCopy';
 import { aboutImage, aboutPreviewParagraphs } from '../data/about';
 import { blogPosts } from '../data/blog';
 import { gallerySlides, products } from '../data/gallery';
+import { publicUrl } from '../lib/publicUrl';
 
 const images = {
-  hero: '/hero.jpg',
-  brushes: '/custom-orders.jpg',
+  hero: publicUrl('/hero.jpg'),
+  brushes: publicUrl('/custom-orders.jpg'),
 };
 
 export function HomePage() {
