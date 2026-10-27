@@ -43,9 +43,7 @@ export function Layout() {
           <div className="nav-dropdown">
             <Link to="/gallery">Gallery</Link>
             <ul className="nav-menu">
-              {gallery
-                .filter((category) => category.id !== '2')
-                .map((category) => (
+              {gallery.map((category) => (
                 <li key={category.id}>
                   <Link className="nav-parent" to={categoryPath(category)}>
                     {category.name}

@@ -82,7 +82,6 @@ export function gallerySlides(): GallerySlide[] {
     buckets.set(slide.artForm, list);
   };
   for (const category of gallery) {
-    if (category.id === '2') continue;
     for (const child of category.children ?? []) {
       if (!child.image) continue;
       for (const product of child.products) {
@@ -114,7 +113,7 @@ export function gallerySlides(): GallerySlide[] {
   const madhubani = buckets.get('Madhubani') ?? [];
   const firstIndex = madhubani.findIndex((slide) => slide.name === 'Lord Ganesha');
   const first = firstIndex >= 0 ? madhubani.splice(firstIndex, 1)[0] : undefined;
-  const order = ['Madhubani', 'Lippan', 'Pichwai', 'Gond', 'Modern Contemporary'];
+  const order = ['Madhubani', 'Lippan', 'Pichwai', 'Gond', 'Bengal Pattachitra', 'Modern Contemporary', 'Texture'];
   const mixed: GallerySlide[] = [];
   let added = true;
   while (added) {
