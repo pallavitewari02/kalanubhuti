@@ -64,6 +64,12 @@ export const products: Product[] = gallery.flatMap((category) => {
   return featuredChildren;
 });
 
+const hanumanIndex = products.findIndex((product) => product.name === 'Lord Hanuman');
+if (hanumanIndex > 0) {
+  const [hanuman] = products.splice(hanumanIndex, 1);
+  products.unshift(hanuman);
+}
+
 export type GallerySlide = {
   name: string;
   image: string;

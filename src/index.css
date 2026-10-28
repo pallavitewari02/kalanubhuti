@@ -96,9 +96,10 @@ button.gallery-card { width: 100%; border: 0; font: inherit; color: inherit; tex
 .artwork-popup { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 400px); gap: 28px; width: min(1280px, calc(100vw - 96px)); max-height: calc(100vh - 32px); overflow: auto; padding: 28px; background: #fbf6ee; color: #1e2a3a; border-radius: 16px; }
 .artwork-popup-main .zoom-photo.is-below { position: relative; }
 .artwork-popup-main .zoom-stage { position: relative; height: min(520px, 62vh); overflow: hidden; background: #fff; border: 1px solid #eadfce; border-radius: 8px; }
-.artwork-popup-main .zoom-stage.is-zoomed { overflow-x: hidden; overflow-y: auto; display: block; }
-.artwork-popup-main .zoom-stage img { max-height: min(500px, 60vh); box-shadow: none; }
-.artwork-popup-main .zoom-stage.is-zoomed img { display: block; height: auto; max-height: none; }
+.exhibition-lightbox .artwork-popup-main .zoom-stage { overflow: hidden; }
+.exhibition-lightbox .artwork-popup-main .zoom-stage.is-zoomed { overflow: auto; display: block; }
+.exhibition-lightbox .artwork-popup-main .zoom-stage img { width: auto; height: auto; min-width: 0; min-height: 0; max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: none; }
+.exhibition-lightbox .artwork-popup-main .zoom-stage.is-zoomed img { display: block; width: 100%; height: auto; max-width: none; max-height: none; }
 .artwork-summary h2 { margin: 0 0 18px; color: #1b2838; font: 700 clamp(28px, 3vw, 40px)/1.15 Georgia, 'Times New Roman', serif; }
 .artwork-row { display: grid; gap: 4px; padding: 12px 0; border-top: 1px solid #e4d8c6; }
 .artwork-row span { color: #8b93a0; font: 14px Arial, sans-serif; }

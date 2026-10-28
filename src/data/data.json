@@ -281,6 +281,7 @@
         "name": "Lord Hanuman",
         "image": "/Art%20pics/Modern%20Contemporary/Lord%20Hanuman.jpg",
         "price": "₹3,500",
+        "featured": true,
         "slug": "LordHanuman",
         "paintingType": "Canvas",
         "size": "18 x 24 inches"
