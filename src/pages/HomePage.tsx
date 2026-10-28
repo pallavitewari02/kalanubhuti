@@ -231,7 +231,7 @@ export function HomePage() {
           <a href="https://www.facebook.com/share/19ZWbmJWU2/" aria-label="Facebook" target="_blank" rel="noreferrer">
             <Facebook size={18} />
           </a>
-          <a href="https://www.instagram.com/v.neha13?stkn=YjN5YjhxZ2hrd2Qy" aria-label="Instagram" target="_blank" rel="noreferrer">
+          <a href="https://www.instagram.com/kalanubhuti.paintings" aria-label="Instagram" target="_blank" rel="noreferrer">
             <Instagram size={18} />
           </a>
         </div>

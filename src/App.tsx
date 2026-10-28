@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes, useParams } from 'react-router-dom';
 import { artFormPathById, findArtForm, findCategoryPainting } from './data/gallery';
+import { GoogleAnalytics } from './components/GoogleAnalytics';
 import { Layout } from './components/Layout';
 import { AboutPage } from './pages/AboutPage';
 import { ArtFormPage } from './pages/ArtFormPage';
@@ -33,6 +34,7 @@ function GalleryTwoSegment() {
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+      <GoogleAnalytics />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
